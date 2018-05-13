@@ -1,0 +1,48 @@
+@import '~@angular/material/theming';
+
+// Include the base styles for Angular Material core. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+@include mat-core();
+
+$mat-knnl-blue: (
+    50 : #e0e8f0,
+    100 : #b3c5da,
+    200 : #809fc2,
+    300 : #4d79a9,
+    400 : #265c96,
+    500 : #003f84,
+    600 : #00397c,
+    700 : #003171,
+    800 : #002967,
+    900 : #001b54,
+    A100 : #86a1ff,
+    A200 : #5379ff,
+    A400 : #2051ff,
+    A700 : #073eff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+$knnl-primary: mat-palette($mat-knnl-blue);
+$knnl-accent:  mat-palette($mat-knnl-blue);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$knnl-light-theme: mat-light-theme($knnl-primary, $knnl-accent);
+$knnl-dark-theme: mat-dark-theme($knnl-accent, $knnl-primary);

@@ -1,0 +1,15 @@
+@import '~@angular/material/theming';
+@import './knnl-theme';
+
+html,
+body {
+  color: #333333;
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+}
+
+@mixin custom-theme($theme, $logo) {}
+
+@include angular-material-theme($knnl-light-theme);
+@include custom-theme($knnl-light-theme, '/assets/logo.svg');
