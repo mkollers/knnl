@@ -1,3 +1,43 @@
-<p>
-  register-page works!
-</p>
+<form fxFlexFill fxLayoutAlign="center center" novalidate [formGroup]="fg" (ngSubmit)="fg.valid && register(fg.value)">
+  <mat-card fxFlex fxFlex.gt-xs="450px">
+    <mat-card-title>Registrierung</mat-card-title>
+    <mat-card-content fxLayout="column">
+      <mat-form-field>
+        <input matInput type="email" placeholder="E-Mail" formControlName="email" autocomplete="email" required>
+        <mat-error *ngIf="fg['controls'].email?.errors?.required || fg['controls'].email?.errors?.email">Bitte geben Sie eine gültige E-Mail ein</mat-error>
+      </mat-form-field>
+      <mat-form-field formGroupName="passwords">
+        <input matInput type="password" placeholder="Kennwort" formControlName="password" required>
+        <mat-error *ngIf="fg['controls'].passwords['controls'].password?.errors?.required || fg['controls'].passwords['controls'].password?.errors?.minlength">Das Kennwort muss mindestens 6 Zeichen lang sein</mat-error>
+      </mat-form-field>
+      <mat-form-field formGroupName="passwords">
+        <input matInput type="password" placeholder="Kennwort wiederholen" formControlName="repeat" required>
+        <mat-error *ngIf="fg['controls'].passwords?.errors?.mismatch">Die Kennwörter sind nicht identisch</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Vorname" formControlName="firstname" required>
+        <mat-error *ngIf="fg['controls'].firstname?.errors?.required">Bitte geben Sie einen Vornamen ein</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Nachname" formControlName="lastname" required>
+        <mat-error *ngIf="fg['controls'].lastname?.errors?.required">Bitte geben Sie einen Nachnamen ein</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" formControlName="dob" placeholder="Geburtstag" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-checkbox formControlName="hideDoB">Geburtsjahr verstecken</mat-checkbox>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Lieblingsverein" formControlName="favoriteTeams" required>
+        <mat-error *ngIf="fg['controls'].favoriteTeams?.errors?.required">Bitte geben Sie einen Verein ein</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea rows="3" matInput placeholder="Hobbies" formControlName="interests"></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Handynummer" formControlName="mobile">
+      </mat-form-field>
+    </mat-card-content>
+  </mat-card>
+</form>
