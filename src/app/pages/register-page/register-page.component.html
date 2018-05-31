@@ -56,7 +56,7 @@
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Datenschutzeinstellungen</ng-template>
-        <form fxLayout="column" novalidate [formGroup]="dataProtFg" (ngSubmit)="finish()">
+        <form fxLayout="column" novalidate [formGroup]="dataProtFg" (ngSubmit)="!inProgress && finish()">
           <p style="margin-top: 0">Um dich über aktuelle Geschehnisse auf dem Laufenden halten zu können, möchten wir dich gerne per E-Mail kontaktieren.<br />
             Bei welchen Ereignissen dürfen wir dir E-Mails senden?
           </p>
@@ -67,7 +67,7 @@
           <p>Wir haben eine WhatsApp-Gruppe und schreiben unseren Mitgliedern zu aktuellen Anlässen (bspw. Sommerfeier, FunCup) direkt. Bist du damit einverstanden?</p>
           <mat-checkbox formControlName="whatsApp">Per WhatsApp kontaktieren</mat-checkbox>
           <mat-checkbox formControlName="whatsAppGroup">WhatsApp-Gruppe hinzufügen</mat-checkbox>
-          <button style="margin-top: 8px;" fxFlexAlign="start" color="primary" mat-raised-button type="submit">
+          <button [disabled]="inProgress" style="margin-top: 8px;" fxFlexAlign="start" color="primary" mat-raised-button type="submit">
             <mat-icon svgIcon="material:outline-done_all"></mat-icon> Registrierung abschließen
           </button>
         </form>

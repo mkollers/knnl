@@ -16,6 +16,7 @@ export class RegisterPageComponent {
   accountFg: FormGroup;
   personalFg: FormGroup;
   dataProtFg: FormGroup;
+  inProgress = false;
 
   constructor(
     private _authService: AuthService,
@@ -28,6 +29,8 @@ export class RegisterPageComponent {
   }
 
   async finish() {
+    this.inProgress = true;
+
     try {
       const email = this.accountFg.value.email;
       const password = this.accountFg.value.passwords.password;
@@ -46,8 +49,17 @@ export class RegisterPageComponent {
         await this._authService.setDataProtection(key, value);
       }
     } catch (err) {
-      this._notificationService.fatal(new ErrorResponse(err));
+      switch (err.code) {
+        case 'auth/email-already-in-use':
+          this._notificationService.error('Bereits vergeben', 'Diese E-Mail Adresse wird bereits von einem anderen Account verwendet');
+          break;
+        default:
+          this._notificationService.fatal(new ErrorResponse(err));
+          break;
+      }
     }
+
+    this.inProgress = false;
   }
 
   private initFormGroups() {
