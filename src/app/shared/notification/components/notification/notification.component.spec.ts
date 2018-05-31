@@ -1,10 +1,8 @@
 import { ChangeDetectorRef, NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { MatIconRegistry } from '@angular/material/icon';
 import { MAT_SNACK_BAR_DATA, MatSnackBarModule, MatSnackBarRef } from '@angular/material/snack-bar';
 
-import { ChangeDetectorRefMock } from '../../../../../mocks/change-detector-ref';
-import { MatIconRegistryMock } from '../../../../../mocks/mat-icon-registry';
 import { NotificationComponent } from './notification.component';
 
 describe('NotificationComponent', () => {
@@ -19,9 +17,9 @@ describe('NotificationComponent', () => {
       ],
       declarations: [NotificationComponent],
       providers: [
-        { provide: ChangeDetectorRef, useValue: ChangeDetectorRefMock }, // default value is used anyway
+        { provide: ChangeDetectorRef, useClass: ChangeDetectorRef }, // default value is used anyway
         { provide: MatSnackBarRef, useValue: { containerInstance: { snackBarConfig: { panelClass: 'info' } } } },
-        { provide: MatIconRegistry, useValue: MatIconRegistryMock },
+        { provide: MatIconRegistry, useClass: MatIconRegistry },
         { provide: MAT_SNACK_BAR_DATA, useValue: {} }
       ],
       schemas: [NO_ERRORS_SCHEMA]

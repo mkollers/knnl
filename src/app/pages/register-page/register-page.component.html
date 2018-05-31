@@ -54,7 +54,7 @@
           <button style="margin-top: 8px;" fxFlexAlign="start" color="primary" mat-raised-button type="submit">Weiter</button>
         </form>
       </mat-step>
-      <mat-step>
+      <mat-step [stepControl]="dataProtFg">
         <ng-template matStepLabel>Datenschutzeinstellungen</ng-template>
         <form fxLayout="column" novalidate [formGroup]="dataProtFg" (ngSubmit)="!inProgress && finish()">
           <p style="margin-top: 0">Um dich über aktuelle Geschehnisse auf dem Laufenden halten zu können, möchten wir dich gerne per E-Mail kontaktieren.<br />
