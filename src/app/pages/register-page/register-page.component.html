@@ -1,7 +1,7 @@
 <mat-card fxFlex fxFlex.gt-xs="450px">
   <mat-card-title>Konto erstellen</mat-card-title>
   <mat-card-content fxLayout="column">
-    <mat-vertical-stepper [linear]="false" #stepper>
+    <mat-vertical-stepper [linear]="true" #stepper>
       <ng-template matStepperIcon="edit">
         <mat-icon svgIcon="material:outline-edit"></mat-icon>
       </ng-template>
@@ -21,9 +21,9 @@
           </mat-form-field>
           <mat-form-field formGroupName="passwords">
             <input matInput type="password" placeholder="Kennwort wiederholen" formControlName="repeat" required>
-            <mat-error *ngIf="accountFg.controls['passwords']?.errors?.mismatch">Die Kennwörter sind nicht identisch</mat-error>
+            <mat-error *ngIf="accountFg.controls['passwords']?.controls['repeat']?.errors?.mismatch">Die Kennwörter sind nicht identisch</mat-error>
           </mat-form-field>
-          <button fxFlexAlign="start" color="primary" mat-raised-button type="submit">Weiter</button>
+          <button style="margin-top: 8px;" fxFlexAlign="start" color="primary" mat-raised-button type="submit">Weiter</button>
         </form>
       </mat-step>
       <mat-step [stepControl]="personalFg">
@@ -51,7 +51,7 @@
           <mat-form-field>
             <input matInput type="text" placeholder="Handynummer" formControlName="mobile">
           </mat-form-field>
-          <button fxFlexAlign="start" color="primary" mat-raised-button type="submit">Weiter</button>
+          <button style="margin-top: 8px;" fxFlexAlign="start" color="primary" mat-raised-button type="submit">Weiter</button>
         </form>
       </mat-step>
       <mat-step>

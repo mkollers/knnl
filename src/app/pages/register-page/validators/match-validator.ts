@@ -1,20 +1,14 @@
 import { FormGroup } from '@angular/forms';
 
 export function MatchValidator(group: FormGroup) {
-    let prev = null;
+    const password = group.controls['password'].value;
+    const repeat = group.controls['repeat'].value;
 
-    // tslint:disable-next-line:forin
-    for (const name in group.controls) {
-        const val = group.controls[name].value;
-
-        if (prev !== null && prev !== val) {
-            return {
-                mismatch: true
-            };
-        }
-
-        prev = val;
+    if (password !== repeat) {
+        group.controls['repeat'].setErrors({
+            mismatch: true
+        });
+    } else {
+        group.controls['repeat'].setErrors(null);
     }
-
-    return null;
 }

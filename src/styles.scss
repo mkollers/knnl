@@ -13,3 +13,8 @@ body {
 
 @include angular-material-theme($knnl-light-theme);
 @include custom-theme($knnl-light-theme, '/assets/logo.svg');
+
+/* Autofill */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+}

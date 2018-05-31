@@ -6,10 +6,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthModule } from './shared/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -28,8 +30,10 @@ import { AppComponent } from './app.component';
 
     // Firebase
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
 
     // Custom
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
