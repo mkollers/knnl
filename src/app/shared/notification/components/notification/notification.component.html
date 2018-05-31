@@ -1,0 +1,10 @@
+<div fxLayout="row">
+  <mat-icon class="smiley" fxFlex="70px" [svgIcon]="'notification:' + state"></mat-icon>
+  <button class="close" mat-icon-button (click)="snackBarRef.dismiss()">
+    <mat-icon svgIcon="material:outline-close"></mat-icon>
+  </button>
+  <div fxLayout="column" fxFlex>
+    <h5 class="title">{{ title }}</h5>
+    <p class="content">{{ content }}</p>
+  </div>
+</div>

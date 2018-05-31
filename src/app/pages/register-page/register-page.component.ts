@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 
 import { AuthService } from '../../shared/auth/services/auth.service';
+import { ErrorResponse } from '../../shared/notification/models/error-response';
+import { NotificationService } from '../../shared/notification/services/notification.service';
 import { MatchValidator } from './validators/match-validator';
 
 @Component({
@@ -18,6 +20,7 @@ export class RegisterPageComponent {
   constructor(
     private _authService: AuthService,
     private _fb: FormBuilder,
+    private _notificationService: NotificationService,
     title: Title
   ) {
     title.setTitle('Konto erstellen');
@@ -25,21 +28,25 @@ export class RegisterPageComponent {
   }
 
   async finish() {
-    const email = this.accountFg.value.email;
-    const password = this.accountFg.value.passwords.password;
-    const personalData = this.personalFg.value;
-    const dataProtection = this.dataProtFg.value;
+    try {
+      const email = this.accountFg.value.email;
+      const password = this.accountFg.value.passwords.password;
+      const personalData = this.personalFg.value;
+      const dataProtection = this.dataProtFg.value;
 
-    await this._authService.register(email, password);
-    await this._authService.setPersonalData(personalData);
+      await this._authService.register(email, password);
+      await this._authService.setPersonalData(personalData);
 
-    for (const key in dataProtection) {
-      if (!dataProtection.hasOwnProperty(key)) {
-        continue;
+      for (const key in dataProtection) {
+        if (!dataProtection.hasOwnProperty(key)) {
+          continue;
+        }
+
+        const value = dataProtection[key] as boolean;
+        await this._authService.setDataProtection(key, value);
       }
-
-      const value = dataProtection[key] as boolean;
-      await this._authService.setDataProtection(key, value);
+    } catch (err) {
+      this._notificationService.fatal(new ErrorResponse(err));
     }
   }
 

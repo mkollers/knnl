@@ -1,0 +1,87 @@
+app-notification {
+  overflow: hidden;
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+app-notification .mat-icon.smiley {
+  height: 50px;
+  width: 70px;
+  margin-left: -35px;
+}
+
+app-notification .mat-icon-button.close {
+  position: absolute;
+  right: 2px;
+  top: 2px;
+}
+
+app-notification .title {
+  font-weight: 700;
+  font-size: 17px;
+  padding: 0 50px 0 0;
+  line-height: 30px;
+  margin: 0;
+}
+
+app-notification .content {
+  font-size: 14px;
+  padding: 0 8px 0 0;
+  line-height: 20px;
+  margin: 0;
+}
+
+.cdk-overlay-container {
+  z-index: 999 !important;
+}
+
+.mat-snack-bar-container {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 10px !important;
+  border-radius: 5px !important;
+  padding: 0 !important;
+  max-width: 300px !important;
+}
+
+.mat-snack-bar-container.info {
+  background: #EEFFFF !important;
+  border: 1px solid #5588c9;
+  color: #5588c9 !important;
+}
+
+.mat-snack-bar-container.info .mat-icon svg {
+  fill: #5588c9;
+}
+
+.mat-snack-bar-container.success {
+  background: #e7f7ed !important;
+  border: 1px solid #6d9d75;
+  color: #6d9d75 !important;
+}
+
+.mat-snack-bar-container.success .mat-icon svg {
+  fill: #6d9d75;
+}
+
+.mat-snack-bar-container.error {
+  background: #ffe5e6 !important;
+  border: 1px solid #d1a0a6;
+  color: #d1a0a6 !important;
+}
+
+.mat-snack-bar-container.error .mat-icon svg {
+  fill: #d1a0a6;
+}
+
+.mat-snack-bar-container.warning {
+  background: #fffaee !important;
+  border: 1px solid #baa07d;
+  color: #baa07d !important;
+}
+
+.mat-snack-bar-container.warning .mat-icon svg {
+  fill: #baa07d;
+}
