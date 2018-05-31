@@ -1,5 +1,8 @@
 import { OverlayModule } from '@angular/cdk/overlay';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
@@ -16,8 +19,12 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
 
+    // Material
     OverlayModule,
+    MatIconModule,
+    MatSidenavModule,
 
     // Firebase
     AngularFireModule.initializeApp(environment.firebase),
