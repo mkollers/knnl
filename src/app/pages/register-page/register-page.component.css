@@ -2,6 +2,9 @@
     align-items: center;
     display: flex;
     min-height: 100%;
-    padding: 16px;
     place-content: center;
+}
+
+:host .mat-card{
+    margin: 16px;
 }

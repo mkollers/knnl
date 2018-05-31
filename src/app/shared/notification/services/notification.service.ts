@@ -24,7 +24,7 @@ export class NotificationService {
     return this._snackbar.openFromComponent(NotificationComponent, config);
   }
 
-  fatal(err: ErrorResponse, duration = 0) {
+  fatal(err: ErrorResponse, duration = 20000) {
     console.error(err);
     const config = { panelClass: 'error', duration: duration, data: { title: err.code, content: err.description } };
     return this._snackbar.openFromComponent(NotificationComponent, config);
