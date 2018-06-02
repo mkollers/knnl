@@ -1,0 +1,19 @@
+<form novalidate [formGroup]="loginFg" (ngSubmit)="login()">
+  <mat-card fxFlex fxFlex.gt-xs="450px">
+    <mat-card-title>Anmelden</mat-card-title>
+    <mat-card-content fxLayout="column">
+      <mat-form-field>
+        <input matInput type="email" placeholder="E-Mail" formControlName="email" autocomplete="email" required>
+        <mat-error *ngIf="loginFg.controls['email']?.errors?.required || loginFg.controls['email']?.errors?.email">Bitte geben Sie eine gültige E-Mail ein</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Kennwort" formControlName="password" autocomplete="password" required>
+        <mat-error *ngIf="loginFg.controls['password']?.errors?.required">Bitte geben Sie ein Kennwort ein</mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="end start">
+      <a routerLink="/register" mat-button>Konto erstellen</a>
+      <button type="submit" mat-button color="primary">Anmelden</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

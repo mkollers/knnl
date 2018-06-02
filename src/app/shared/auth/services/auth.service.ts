@@ -32,4 +32,8 @@ export class AuthService {
       }
     }, { merge: true });
   }
+
+  async login(email: string, password: string) {
+    await this._auth.auth.signInWithEmailAndPassword(email, password);
+  }
 }
