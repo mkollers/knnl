@@ -1,9 +1,7 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { NotificationComponent } from '../components/notification/notification.component';
-import { ErrorResponse } from '../models/error-response';
 import { NotificationService } from './notification.service';
 
 describe('NotificationService', () => {
@@ -124,7 +122,7 @@ describe('NotificationService', () => {
       config.panelClass = 'error';
       config.duration = 20000;
 
-      service.fatal(new ErrorResponse({ errorDescription: config.data.content, errorCode: config.data.title }));
+      service.fatal({ errorDescription: config.data.content, errorCode: config.data.title });
 
       expect(snackbar.openFromComponent).toHaveBeenCalledWith(NotificationComponent, config);
     });
@@ -134,7 +132,7 @@ describe('NotificationService', () => {
       config.panelClass = 'error';
       config.duration = 5000;
 
-      service.fatal(new ErrorResponse({ errorDescription: config.data.content, errorCode: config.data.title }), config.duration);
+      service.fatal({ errorDescription: config.data.content, errorCode: config.data.title }, config.duration);
 
       expect(snackbar.openFromComponent).toHaveBeenCalledWith(NotificationComponent, config);
     });

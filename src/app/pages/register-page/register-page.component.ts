@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 
 import { AuthService } from '../../shared/auth/services/auth.service';
-import { ErrorResponse } from '../../shared/notification/models/error-response';
 import { NotificationService } from '../../shared/notification/services/notification.service';
 import { MatchValidator } from './validators/match-validator';
 
@@ -54,7 +53,7 @@ export class RegisterPageComponent {
           this._notificationService.error('Bereits vergeben', 'Diese E-Mail Adresse wird bereits von einem anderen Account verwendet');
           break;
         default:
-          this._notificationService.fatal(new ErrorResponse(err));
+          this._notificationService.fatal(err);
           break;
       }
     }

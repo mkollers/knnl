@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../shared/auth/services/auth.service';
-import { ErrorResponse } from '../../shared/notification/models/error-response';
 import { NotificationService } from '../../shared/notification/services/notification.service';
 
 @Component({
@@ -34,7 +33,14 @@ export class LoginPageComponent {
       await this._authService.login(email, password);
       await this._router.navigateByUrl('/');
     } catch (err) {
-      this._notificationService.fatal(new ErrorResponse(err));
+      switch (err.code) {
+        case 'auth/user-not-found':
+          this._notificationService.error('Unbekannter Nutzer', 'Diese E-Mail Adresse ist uns leider nicht bekannt.');
+          break;
+        default:
+          this._notificationService.fatal(err);
+          break;
+      }
     }
   }
 

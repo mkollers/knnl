@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { NotificationComponent } from '../components/notification/notification.component';
-import { ErrorResponse } from '../models/error-response';
 
 @Injectable()
 export class NotificationService {
@@ -24,9 +23,9 @@ export class NotificationService {
     return this._snackbar.openFromComponent(NotificationComponent, config);
   }
 
-  fatal(err: ErrorResponse, duration = 20000) {
+  fatal(err: any, duration = 20000) {
     console.error(err);
-    const config = { panelClass: 'error', duration: duration, data: { title: err.code, content: err.description } };
+    const config = { panelClass: 'error', duration: duration, data: { title: 'Unerwarteter Fehler', content: JSON.stringify(err) } };
     return this._snackbar.openFromComponent(NotificationComponent, config);
   }
 
