@@ -12,29 +12,29 @@
         <ng-template matStepLabel>Konto erstellen</ng-template>
         <form fxLayout="column" novalidate [formGroup]="accountFg" (ngSubmit)="stepper.next()">
           <mat-form-field>
-            <input matInput type="email" placeholder="E-Mail" formControlName="email" autocomplete="email" required>
+            <input matInput class="email" type="email" placeholder="E-Mail" formControlName="email" autocomplete="email" required>
             <mat-error *ngIf="accountFg.controls['email']?.errors?.required || accountFg.controls['email']?.errors?.email">Bitte geben Sie eine gültige E-Mail ein</mat-error>
           </mat-form-field>
           <mat-form-field formGroupName="passwords">
-            <input matInput type="password" placeholder="Kennwort" formControlName="password" required>
+            <input matInput class="password" type="password" placeholder="Kennwort" formControlName="password" required>
             <mat-error *ngIf="accountFg.controls['passwords'].controls['password']?.errors?.required || accountFg.controls['passwords'].controls['password']?.errors?.minlength">Das Kennwort muss mindestens 6 Zeichen lang sein</mat-error>
           </mat-form-field>
           <mat-form-field formGroupName="passwords">
-            <input matInput type="password" placeholder="Kennwort wiederholen" formControlName="repeat" required>
+            <input class="confirm" matInput type="password" placeholder="Kennwort wiederholen" formControlName="repeat" required>
             <mat-error *ngIf="accountFg.controls['passwords']?.controls['repeat']?.errors?.mismatch">Die Kennwörter sind nicht identisch</mat-error>
           </mat-form-field>
-          <button style="margin-top: 8px;" fxFlexAlign="start" color="primary" mat-raised-button type="submit">Weiter</button>
+          <button class="submit-account" style="margin-top: 8px;" fxFlexAlign="start" color="primary" mat-raised-button type="submit">Weiter</button>
         </form>
       </mat-step>
       <mat-step [stepControl]="personalFg">
         <ng-template matStepLabel>Persönliche Informationen</ng-template>
         <form fxLayout="column" novalidate [formGroup]="personalFg" (ngSubmit)="stepper.next()">
           <mat-form-field>
-            <input matInput type="text" placeholder="Vorname" formControlName="firstname" required>
+            <input class="firstname" matInput type="text" placeholder="Vorname" formControlName="firstname" required>
             <mat-error *ngIf="personalFg.controls['firstname']?.errors?.required">Bitte geben Sie einen Vornamen ein</mat-error>
           </mat-form-field>
           <mat-form-field>
-            <input matInput type="text" placeholder="Nachname" formControlName="lastname" required>
+            <input class="lastname" matInput type="text" placeholder="Nachname" formControlName="lastname" required>
             <mat-error *ngIf="personalFg.controls['lastname']?.errors?.required">Bitte geben Sie einen Nachnamen ein</mat-error>
           </mat-form-field>
           <mat-form-field>
@@ -51,7 +51,7 @@
           <mat-form-field>
             <input matInput type="text" placeholder="Handynummer" formControlName="mobile">
           </mat-form-field>
-          <button style="margin-top: 8px;" fxFlexAlign="start" color="primary" mat-raised-button type="submit">Weiter</button>
+          <button class="submit-personal" style="margin-top: 8px;" fxFlexAlign="start" color="primary" mat-raised-button type="submit">Weiter</button>
         </form>
       </mat-step>
       <mat-step [stepControl]="dataProtFg">
@@ -67,7 +67,7 @@
           <p>Wir haben eine WhatsApp-Gruppe und schreiben unseren Mitgliedern zu aktuellen Anlässen (bspw. Sommerfeier, FunCup) direkt. Bist du damit einverstanden?</p>
           <mat-checkbox formControlName="whatsApp">Per WhatsApp kontaktieren</mat-checkbox>
           <mat-checkbox formControlName="whatsAppGroup">WhatsApp-Gruppe hinzufügen</mat-checkbox>
-          <button [disabled]="inProgress" style="margin-top: 8px;" fxFlexAlign="start" color="primary" mat-raised-button type="submit">
+          <button class="submit-data-prot" [disabled]="inProgress" style="margin-top: 8px;" fxFlexAlign="start" color="primary" mat-raised-button type="submit">
             <mat-icon svgIcon="material:outline-done_all"></mat-icon> Registrierung abschließen
           </button>
         </form>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../../shared/auth/services/auth.service';
 import { NotificationService } from '../../shared/notification/services/notification.service';
@@ -21,6 +22,7 @@ export class RegisterPageComponent {
     private _authService: AuthService,
     private _fb: FormBuilder,
     private _notificationService: NotificationService,
+    private _router: Router,
     title: Title
   ) {
     title.setTitle('Konto erstellen');
@@ -46,6 +48,7 @@ export class RegisterPageComponent {
 
         const value = dataProtection[key] as boolean;
         await this._authService.setDataProtection(key, value);
+        await this._router.navigateByUrl('/');
       }
     } catch (err) {
       switch (err.code) {
