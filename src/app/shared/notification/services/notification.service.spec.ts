@@ -117,12 +117,22 @@ describe('NotificationService', () => {
   });
 
   describe('fatal notification', () => {
+    let err: any;
+
+    beforeEach(() => {
+      err = { errorDescription: config.data.content, errorCode: config.data.title };
+    });
+
     it('should display a fatal message', () => {
       spyOn(snackbar, 'openFromComponent');
       config.panelClass = 'error';
       config.duration = 20000;
+      config.data = {
+        title: 'Unerwarteter Fehler',
+        content: JSON.stringify(err)
+      };
 
-      service.fatal({ errorDescription: config.data.content, errorCode: config.data.title });
+      service.fatal(err);
 
       expect(snackbar.openFromComponent).toHaveBeenCalledWith(NotificationComponent, config);
     });
@@ -131,8 +141,12 @@ describe('NotificationService', () => {
       spyOn(snackbar, 'openFromComponent');
       config.panelClass = 'error';
       config.duration = 5000;
+      config.data = {
+        title: 'Unerwarteter Fehler',
+        content: JSON.stringify(err)
+      };
 
-      service.fatal({ errorDescription: config.data.content, errorCode: config.data.title }, config.duration);
+      service.fatal(err, config.duration);
 
       expect(snackbar.openFromComponent).toHaveBeenCalledWith(NotificationComponent, config);
     });

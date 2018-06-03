@@ -1,4 +1,4 @@
-<form novalidate [formGroup]="loginFg" (ngSubmit)="login()">
+<form novalidate [formGroup]="loginFg" (ngSubmit)="loginFg.valid && login()">
   <mat-card fxFlex fxFlex.gt-xs="450px">
     <mat-card-title>Anmelden</mat-card-title>
     <mat-card-content fxLayout="column">

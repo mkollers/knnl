@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { AuthService } from '../../shared/auth/services/auth.service';
 import { NotificationService } from '../../shared/notification/services/notification.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login-page',
@@ -17,8 +18,11 @@ export class LoginPageComponent {
     private _authService: AuthService,
     private _notificationService: NotificationService,
     private _router: Router,
-    fb: FormBuilder
+    fb: FormBuilder,
+    title: Title
   ) {
+    title.setTitle('Anmelden');
+
     this.loginFg = fb.group({
       email: fb.control('', [Validators.required, Validators.email]),
       password: fb.control('', Validators.required)
