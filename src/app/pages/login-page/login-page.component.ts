@@ -13,6 +13,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class LoginPageComponent {
   loginFg: FormGroup;
+  inProgress = false;
 
   constructor(
     private _authService: AuthService,
@@ -30,6 +31,8 @@ export class LoginPageComponent {
   }
 
   async login() {
+    this.inProgress = true;
+
     const email = this.loginFg.value.email;
     const password = this.loginFg.value.password;
 
@@ -46,6 +49,6 @@ export class LoginPageComponent {
           break;
       }
     }
+    this.inProgress = false;
   }
-
 }
