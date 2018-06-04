@@ -41,15 +41,12 @@ export class RegisterPageComponent {
       await this._authService.register(email, password);
       await this._authService.setPersonalData(personalData);
 
+      // tslint:disable-next-line:forin
       for (const key in dataProtection) {
-        if (!dataProtection.hasOwnProperty(key)) {
-          continue;
-        }
-
         const value = dataProtection[key] as boolean;
         await this._authService.setDataProtection(key, value);
-        await this._router.navigateByUrl('/');
       }
+      await this._router.navigateByUrl('/');
     } catch (err) {
       switch (err.code) {
         case 'auth/email-already-in-use':

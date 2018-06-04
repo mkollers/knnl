@@ -60,13 +60,13 @@
           <p style="margin-top: 0">Um dich über aktuelle Geschehnisse auf dem Laufenden halten zu können, möchten wir dich gerne per E-Mail kontaktieren.<br />
             Bei welchen Ereignissen dürfen wir dir E-Mails senden?
           </p>
-          <mat-checkbox formControlName="news">Neuigkeiten</mat-checkbox>
-          <mat-checkbox formControlName="newPost">Neue Beiträge im Forum</mat-checkbox>
-          <mat-checkbox formControlName="reply">Antworten im Forum</mat-checkbox>
-          <mat-checkbox formControlName="results">Neue Ergebnisse bei Kicker</mat-checkbox>
+          <mat-checkbox class="news" formControlName="news">Neuigkeiten</mat-checkbox>
+          <mat-checkbox class="new-post" formControlName="newPost">Neue Beiträge im Forum</mat-checkbox>
+          <mat-checkbox class="reply" formControlName="reply">Antworten im Forum</mat-checkbox>
+          <mat-checkbox class="results" formControlName="results">Neue Ergebnisse bei Kicker</mat-checkbox>
           <p>Wir haben eine WhatsApp-Gruppe und schreiben unseren Mitgliedern zu aktuellen Anlässen (bspw. Sommerfeier, FunCup) direkt. Bist du damit einverstanden?</p>
-          <mat-checkbox formControlName="whatsApp">Per WhatsApp kontaktieren</mat-checkbox>
-          <mat-checkbox formControlName="whatsAppGroup">WhatsApp-Gruppe hinzufügen</mat-checkbox>
+          <mat-checkbox class="whats-app" formControlName="whatsApp">Per WhatsApp kontaktieren</mat-checkbox>
+          <mat-checkbox class="whats-app-group" formControlName="whatsAppGroup">WhatsApp-Gruppe hinzufügen</mat-checkbox>
           <button class="submit-data-prot" [disabled]="inProgress" style="margin-top: 8px;" fxFlexAlign="start" color="primary" mat-raised-button type="submit">
             <mat-icon svgIcon="material:outline-done_all"></mat-icon> Registrierung abschließen
           </button>

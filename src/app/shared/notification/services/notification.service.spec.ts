@@ -125,6 +125,8 @@ describe('NotificationService', () => {
 
     it('should display a fatal message', () => {
       spyOn(snackbar, 'openFromComponent');
+      spyOn(console, 'error').and.stub();
+
       config.panelClass = 'error';
       config.duration = 20000;
       config.data = {
@@ -135,10 +137,13 @@ describe('NotificationService', () => {
       service.fatal(err);
 
       expect(snackbar.openFromComponent).toHaveBeenCalledWith(NotificationComponent, config);
+      expect(console.error).toHaveBeenCalledWith(err);
     });
 
     it('should display a fatal message with custom duration', () => {
       spyOn(snackbar, 'openFromComponent');
+      spyOn(console, 'error').and.stub();
+
       config.panelClass = 'error';
       config.duration = 5000;
       config.data = {
@@ -149,6 +154,7 @@ describe('NotificationService', () => {
       service.fatal(err, config.duration);
 
       expect(snackbar.openFromComponent).toHaveBeenCalledWith(NotificationComponent, config);
+      expect(console.error).toHaveBeenCalledWith(err);
     });
   });
 
