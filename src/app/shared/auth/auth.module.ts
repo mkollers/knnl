@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-
-import { AuthService } from './services/auth.service';
 
 @NgModule({
   imports: [
@@ -15,13 +13,4 @@ import { AuthService } from './services/auth.service';
   ],
   declarations: []
 })
-export class AuthModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: AuthModule,
-      providers: [
-        AuthService
-      ]
-    };
-  }
-}
+export class AuthModule { }

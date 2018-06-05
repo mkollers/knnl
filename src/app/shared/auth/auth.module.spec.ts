@@ -13,11 +13,4 @@ describe('AuthModule', () => {
   it('should create an instance', () => {
     expect(authModule).toBeTruthy();
   });
-
-  it('should create an instance with forRoot() and inlcude AuthService', () => {
-    const mod = AuthModule.forRoot();
-    const includes = mod.providers.includes(AuthService);
-
-    expect(includes).toBeTruthy();
-  });
 });
