@@ -20,7 +20,7 @@ export class LoggedInGuard implements CanActivate {
       return true;
     }
 
-    await this._router.navigateByUrl('/login');
+    const result = this._router.navigateByUrl('/login');
     return false;
   }
 }
