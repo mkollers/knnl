@@ -1,7 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { LoggedInGuard } from './shared/auth/guards/logged-in.guard';
+
 const routes: Routes = [
+    {
+        path: 'news',
+        loadChildren: './pages/news/news-page/news-page.module#NewsPageModule',
+        canActivate: [LoggedInGuard]
+    },
     {
         path: 'login',
         loadChildren: './pages/login-page/login-page.module#LoginPageModule',
@@ -10,7 +17,7 @@ const routes: Routes = [
         path: 'register',
         loadChildren: './pages/register-page/register-page.module#RegisterPageModule',
     },
-    { path: '**', redirectTo: 'login' }
+    { path: '**', redirectTo: 'news' }
 ];
 
 @NgModule({
