@@ -1,0 +1,66 @@
+#logo {
+    height: 150px;
+    min-height: 139px;
+    background-image: url('/assets/logo.svg');
+    background-repeat: no-repeat;
+    width: 100%;
+    background-size: 70% auto;
+    background-position: center;
+}
+
+.mat-sidenav {
+    box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+    width: 240px;
+    overflow-x: hidden;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+::ng-deep .mat-sidenav h3 {
+    border: none;
+    font-size: 10px;
+    letter-spacing: 1px;
+    line-height: 24px;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: 8px 0 0 0;
+    padding: 0 16px;
+}
+
+::ng-deep .mat-sidenav nav {
+    margin-bottom: 8px;
+}
+
+::ng-deep .mat-sidenav ul {
+    list-style-type: none;
+    margin: 0 0 32px 0;
+    padding: 0;
+}
+
+::ng-deep .mat-sidenav nav li {
+    margin: 0;
+    padding: 0;
+}
+
+::ng-deep .mat-sidenav nav a,
+::ng-deep .mat-sidenav nav button {
+    box-sizing: border-box;
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 47px;
+    text-decoration: none;
+    transition: all .3s;
+    padding: 0 16px;
+    position: relative;
+    text-align: left;
+    text-transform: none;
+    width: 100%;
+}
+
+:host ::ng-deep nav li a .mat-icon {
+    vertical-align: middle;
+    line-height: 20px;
+    margin-right: 8px;
+}

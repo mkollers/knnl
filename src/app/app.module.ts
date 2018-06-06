@@ -12,6 +12,8 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './shared/auth/auth.module';
+import { DataAccessModule } from './shared/data-access/data-access.module';
+import { LayoutModule } from './shared/layout/layout.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { AuthModule } from './shared/auth/auth.module';
     AngularFirestoreModule,
 
     // Custom
-    AuthModule
+    AuthModule,
+    DataAccessModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

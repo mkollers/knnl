@@ -41,4 +41,8 @@ export class AuthService {
   async login(email: string, password: string) {
     await this._auth.auth.signInWithEmailAndPassword(email, password);
   }
+
+  async logout() {
+    await this._auth.auth.signOut();
+  }
 }

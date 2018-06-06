@@ -1,0 +1,25 @@
+<mat-sidenav-container fullscreen>
+  <mat-sidenav [mode]="mode" [opened]="opened">
+    <div id="logo"></div>
+    <nav>
+      <ul>
+        <li>
+          <a mat-button routerLink="/news" routerLinkActive="active">
+            <mat-icon svgIcon="material:outline-whatshot"></mat-icon>&nbsp;News
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <nav *ngIf="user">
+      <h3>{{ user.firstname }} {{ user.lastname }}</h3>      
+      <ul>
+        <li>
+          <button mat-button (click)="logout()">
+            Abmelden
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </mat-sidenav>
+  <ng-content></ng-content>
+</mat-sidenav-container>

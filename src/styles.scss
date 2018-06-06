@@ -1,5 +1,6 @@
 @import '~@angular/material/theming';
 @import './knnl-theme';
+@import 'app/shared/layout/components/sidenav/sidenav.theme';
 
 html,
 body {
@@ -9,10 +10,12 @@ body {
   font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
 }
 
-@mixin custom-theme($theme, $logo) {}
+@mixin custom-theme($theme) {
+  @include knnl-sidenav-theme($theme);
+}
 
 @include angular-material-theme($knnl-light-theme);
-@include custom-theme($knnl-light-theme, '/assets/logo.svg');
+@include custom-theme($knnl-light-theme);
 
 /* Autofill */
 input:-webkit-autofill {

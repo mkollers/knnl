@@ -1,0 +1,23 @@
+@import '~@angular/material/theming';
+
+@mixin knnl-sidenav-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    .mat-sidenav ul li {
+        border-bottom: 1px solid mat-color($foreground, text, 0.06);
+        &:first-child {
+            border-top: 1px solid mat-color($foreground, text, 0.06);
+        }
+        a {
+            color: mat-color($foreground, text);                                        
+            &.active {
+                background: mat-color($background, hover);
+                color: mat-color($foreground, text);
+            }
+        }
+    }
+}

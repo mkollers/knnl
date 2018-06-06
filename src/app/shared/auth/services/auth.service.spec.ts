@@ -20,7 +20,8 @@ describe('AuthService', () => {
             auth: {
               currentUser: { email: 'Indiana@Jones.de' },
               createUserWithEmailAndPassword: () => { },
-              signInWithEmailAndPassword: () => { }
+              signInWithEmailAndPassword: () => { },
+              signOut: () => Promise.resolve()
             }
           }
         },
@@ -94,5 +95,13 @@ describe('AuthService', () => {
     await service.login('Indiana@Jones.de', 'SlapMe');
 
     expect(angularFireAuth.auth.signInWithEmailAndPassword).toHaveBeenCalledWith('Indiana@Jones.de', 'SlapMe');
+  });
+
+  it('should signout', async () => {
+    spyOn(angularFireAuth.auth, 'signOut').and.returnValue(Promise.resolve());
+
+    await service.logout();
+
+    expect(angularFireAuth.auth.signOut).toHaveBeenCalled();
   });
 });
