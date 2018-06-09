@@ -1,0 +1,12 @@
+<mat-toolbar color="accent">
+  <button mat-icon-button [routerLink]="uri" *ngIf="navigateBackUri$ | async as uri; else menu">
+    <mat-icon svgIcon="material:outline-arrow_back"></mat-icon>
+  </button>
+  <h1 fxFlex>{{ title$ | async }}</h1>
+</mat-toolbar>
+
+<ng-template #menu>
+  <button mat-icon-button (click)="toggle.emit()">
+    <mat-icon svgIcon="material:outline-menu"></mat-icon>
+  </button>
+</ng-template>

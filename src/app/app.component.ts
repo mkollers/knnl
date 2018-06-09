@@ -35,9 +35,11 @@ export class AppComponent {
   /** Registers all required svg-icons for the whole application */
   private registerIcons() {
     // Material icons
+    this.registerIcon('material', 'outline-arrow_back');
     this.registerIcon('material', 'outline-close');
     this.registerIcon('material', 'outline-done_all');
     this.registerIcon('material', 'outline-edit');
+    this.registerIcon('material', 'outline-menu');
     this.registerIcon('material', 'outline-whatshot');
   }
 

@@ -1,4 +1,5 @@
-<app-sidenav *ngIf="user$ | async as user; else content;" [knnl-user]="user">
+<app-sidenav *ngIf="user$ | async as user; else content;" [knnl-user]="user" #sidenav>
+  <app-toolbar (knnl-toggle)="sidenav.toggle()"></app-toolbar>
   <ng-container *ngTemplateOutlet="content"></ng-container>
 </app-sidenav>
 

@@ -52,9 +52,9 @@ export class SidenavComponent implements OnDestroy {
     this._subscriptions.forEach(s => s.unsubscribe());
   }
 
-  logout() {
-    this._authService.logout();
-    this._router.navigate(['login']);
+  async logout() {
+    await this._authService.logout();
+    await this._router.navigateByUrl('/login');
   }
 
   toggle() {

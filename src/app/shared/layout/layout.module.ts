@@ -1,12 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule, MatIconModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
+import { RouterModule } from '@angular/router';
 
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
 
     // Material
     MatButtonModule,
@@ -15,10 +18,12 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     MatToolbarModule
   ],
   declarations: [
-    SidenavComponent
+    SidenavComponent,
+    ToolbarComponent
   ],
   exports: [
-    SidenavComponent
+    SidenavComponent,
+    ToolbarComponent
   ]
 })
 export class LayoutModule { }
