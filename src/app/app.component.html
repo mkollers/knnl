@@ -1,3 +1,7 @@
-<app-sidenav [knnl-user]="user$ | async">
-  <router-outlet></router-outlet>
+<app-sidenav *ngIf="user$ | async as user; else content;" [knnl-user]="user">
+  <ng-container *ngTemplateOutlet="content"></ng-container>
 </app-sidenav>
+
+<ng-template #content>
+  <router-outlet></router-outlet>
+</ng-template>

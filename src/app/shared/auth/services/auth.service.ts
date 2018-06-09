@@ -5,6 +5,7 @@ import { User } from 'firebase/app';
 import { Observable } from 'rxjs';
 
 import { PersonalData } from '../models/personal-data';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
