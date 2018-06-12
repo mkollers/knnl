@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 
 import { PersonalData } from '../../auth/models/personal-data';
 import { User } from '../models/user';
+import { isMoment, Moment } from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,8 @@ export class UserService {
   async setPersonalData(uid: string, value: PersonalData) {
     if (value.dob instanceof Date) {
       value.dob = value.dob.getTime();
+    } else if (isMoment(value.dob)) {
+      value.dob = (value.dob as Moment).unix();
     }
 
     await this._db.object(`users/${uid}`).update(value);
