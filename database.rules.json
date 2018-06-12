@@ -1,0 +1,12 @@
+{
+  "rules": {
+    ".read": true,
+    ".write": true,
+    "users": {
+      "$uid": {
+        ".read": "auth.uid == $uid",
+        ".write": "!data.exists() || auth.uid == $uid"
+      }
+    }
+  }
+}
