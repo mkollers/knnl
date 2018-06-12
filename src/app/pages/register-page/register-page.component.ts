@@ -19,6 +19,7 @@ export class RegisterPageComponent {
   personalFg: FormGroup;
   dataProtFg: FormGroup;
   inProgress = false;
+  today = new Date();
 
   constructor(
     private _authService: AuthService,

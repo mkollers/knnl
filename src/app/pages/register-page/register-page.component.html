@@ -38,9 +38,9 @@
             <mat-error *ngIf="personalFg.controls['lastname']?.errors?.required">Bitte geben Sie einen Nachnamen ein</mat-error>
           </mat-form-field>
           <mat-form-field>
-            <input matInput [matDatepicker]="picker" formControlName="dob" placeholder="Geburtstag">
+            <input disabled [max]="today" matInput [matDatepicker]="picker" formControlName="dob" placeholder="Geburtstag">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-datepicker startView="multi-year" disabled="false" #picker></mat-datepicker>
           </mat-form-field>
           <mat-form-field>
             <input matInput type="text" placeholder="Lieblingsverein" formControlName="favoriteTeams">
