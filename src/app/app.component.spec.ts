@@ -26,7 +26,7 @@ describe('AppComponent', () => {
     authServiceMock = new Mock<AuthService>({ authState$: authState$ });
     domSanitizerMock = new Mock<DomSanitizer>({ bypassSecurityTrustResourceUrl: () => { } });
     iconRegistryMock = new Mock<MatIconRegistry>({ addSvgIconInNamespace: () => { } });
-    userServiceMock = new Mock<UserService>({ getByEmail: () => observableOf(null) });
+    userServiceMock = new Mock<UserService>({ getByUid: () => observableOf(null) });
 
     TestBed.configureTestingModule({
       declarations: [
@@ -55,25 +55,25 @@ describe('AppComponent', () => {
 
   it('should load user from userService', () => {
     // Arrange
-    const userService = TestBed.get(UserService);
-    userServiceMock.setup(u => u.getByEmail).is(() => of(null));
+    const userService: UserService = TestBed.get(UserService);
+    userServiceMock.setup(u => u.getByUid).is(() => of(null));
 
     // Act
-    authState$.next({ email: 'captain@america.com' });
+    authState$.next({ uid: 'cqSUnC0IjgQ22GG1bOHVc7EIJD33' });
 
     // Assert
-    expect(userService.getByEmail).toHaveBeenCalledWith('captain@america.com');
+    expect(userService.getByUid).toHaveBeenCalledWith('cqSUnC0IjgQ22GG1bOHVc7EIJD33');
   });
 
   it('should not call userService because of empty auth state', () => {
     // Arrange
-    const userService = TestBed.get(UserService);
-    userServiceMock.setup(u => u.getByEmail).is(() => of(null));
+    const userService: UserService = TestBed.get(UserService);
+    userServiceMock.setup(u => u.getByUid).is(() => of(null));
 
     // Act
     authState$.next(null);
 
     // Assert
-    expect(userService.getByEmail).not.toHaveBeenCalled();
+    expect(userService.getByUid).not.toHaveBeenCalled();
   });
 });

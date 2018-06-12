@@ -4,8 +4,10 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../shared/auth/services/auth.service';
+import { UserService } from '../../shared/data-access/services/user.service';
 import { NotificationService } from '../../shared/notification/services/notification.service';
 import { MatchValidator } from './validators/match-validator';
+import { PersonalData } from '../../shared/auth/models/personal-data';
 
 @Component({
   selector: 'app-register-page',
@@ -23,6 +25,7 @@ export class RegisterPageComponent {
     private _fb: FormBuilder,
     private _notificationService: NotificationService,
     private _router: Router,
+    private _userService: UserService,
     title: Title
   ) {
     title.setTitle('Konto erstellen');
@@ -33,18 +36,18 @@ export class RegisterPageComponent {
     this.inProgress = true;
 
     try {
-      const email = this.accountFg.value.email;
-      const password = this.accountFg.value.passwords.password;
-      const personalData = this.personalFg.value;
+      const email: string = this.accountFg.value.email;
+      const password: string = this.accountFg.value.passwords.password;
+      const personalData: PersonalData = { email: email, ... this.personalFg.value };
       const dataProtection = this.dataProtFg.value;
 
-      await this._authService.register(email, password);
-      await this._authService.setPersonalData(personalData);
+      const result = await this._authService.register(email, password);
+      await this._userService.setPersonalData(result.user.uid, personalData);
 
       // tslint:disable-next-line:forin
       for (const key in dataProtection) {
         const value = dataProtection[key] as boolean;
-        await this._authService.setDataProtection(key, value);
+        await this._userService.setDataProtection(result.user.uid, key, value);
       }
       await this._router.navigateByUrl('/');
     } catch (err) {

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, DocumentSnapshot, Action } from 'angularfire2/firestore';
+import { AngularFireDatabase, DatabaseSnapshot, AngularFireAction } from 'angularfire2/database';
 import { map } from 'rxjs/operators';
 
+import { PersonalData } from '../../auth/models/personal-data';
 import { User } from '../models/user';
 
 @Injectable({
@@ -9,11 +10,21 @@ import { User } from '../models/user';
 })
 export class UserService {
 
-  constructor(private _db: AngularFirestore) { }
+  constructor(private _db: AngularFireDatabase) { }
 
-  getByEmail(email: string) {
-    return this._db.collection('users').doc(email).snapshotChanges().pipe(
-      map<any, User>(snapshot => ({ email: snapshot.payload.id, ...snapshot.payload.data() }))
+  getByUid(uid: string) {
+    return this._db.object<User>(`users/${uid}`).snapshotChanges().pipe(
+      map<AngularFireAction<DatabaseSnapshot<User>>, User>(snapshot => ({ uid: snapshot.payload.key, ...snapshot.payload.val() }))
     );
+  }
+
+  async setPersonalData(uid: string, value: PersonalData) {
+    await this._db.object(`users/${uid}`).update(value);
+  }
+
+  async setDataProtection(uid: string, key: string, value: boolean) {
+    await this._db.object(`users/${uid}/dataProtection`).update({
+      [key]: value
+    });
   }
 }

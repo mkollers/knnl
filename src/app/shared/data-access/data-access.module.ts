@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { UserService } from './services/user.service';
 
@@ -9,7 +9,7 @@ import { UserService } from './services/user.service';
     CommonModule,
 
     // AngularFire
-    AngularFirestoreModule
+    AngularFireDatabaseModule
   ],
   providers: [
     UserService

@@ -1,12 +1,14 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule, MatStepperModule } from '@angular/material';
 import { By, Title } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
+import { Mock } from 'ts-mocks/lib';
 
 import { AuthService } from '../../shared/auth/services/auth.service';
+import { UserService } from '../../shared/data-access/services/user.service';
 import { NotificationService } from '../../shared/notification/services/notification.service';
 import { RegisterPageComponent } from './register-page.component';
 
@@ -14,7 +16,28 @@ describe('RegisterPageComponent', () => {
   let component: RegisterPageComponent;
   let fixture: ComponentFixture<RegisterPageComponent>;
 
-  beforeEach(fakeAsync(() => {
+  // Mocks
+  let authServiceMock: Mock<AuthService>;
+  let userServiceMock: Mock<UserService>;
+  let notificationServiceMock: Mock<NotificationService>;
+  let routerMock: Mock<Router>;
+  let titleMock: Mock<Title>;
+
+  beforeEach(async(() => {
+    authServiceMock = new Mock<AuthService>({ register: () => Promise.resolve()});
+    userServiceMock = new Mock<UserService>({
+      setPersonalData: () => { },
+      setDataProtection: () => { }
+    });
+    notificationServiceMock = new Mock<NotificationService>({
+      error: () => { },
+      fatal: () => { }
+    });
+    routerMock = new Mock<Router>({ navigateByUrl: () => { } });
+    titleMock = new Mock<Title>({ setTitle: () => { } });
+
+    authServiceMock.setup(x => x.register).is(() => Promise.resolve());
+
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -26,21 +49,11 @@ describe('RegisterPageComponent', () => {
       ],
       declarations: [RegisterPageComponent],
       providers: [
-        {
-          provide: AuthService, useValue: {
-            register: () => { },
-            setPersonalData: () => { },
-            setDataProtection: (key: string, value: boolean) => { }
-          }
-        },
-        {
-          provide: NotificationService, useValue: {
-            error: () => { },
-            fatal: () => { }
-          }
-        },
-        { provide: Router, useValue: { navigateByUrl: () => { } } },
-        { provide: Title, useValue: { setTitle: () => { } } }
+        { provide: AuthService, useValue: authServiceMock.Object },
+        { provide: UserService, useValue: userServiceMock.Object },
+        { provide: NotificationService, useValue: notificationServiceMock.Object },
+        { provide: Router, useValue: routerMock.Object },
+        { provide: Title, useValue: titleMock.Object }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
@@ -51,6 +64,7 @@ describe('RegisterPageComponent', () => {
     fixture = TestBed.createComponent(RegisterPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    tick();
   }));
 
   it('should create', () => {
@@ -61,11 +75,13 @@ describe('RegisterPageComponent', () => {
     let authService: AuthService;
     let notificationService: NotificationService;
     let router: Router;
+    let userService: UserService;
 
     beforeEach(() => {
       authService = TestBed.get(AuthService);
       notificationService = TestBed.get(NotificationService);
       router = TestBed.get(Router);
+      userService = TestBed.get(UserService);
     });
 
     function fillAccountFormAndSubmit(email: string, password: string) {
@@ -137,10 +153,10 @@ describe('RegisterPageComponent', () => {
     }
 
     it('successfull', async () => {
-      spyOn(authService, 'register').and.returnValue(Promise.resolve());
-      spyOn(authService, 'setPersonalData').and.returnValue(Promise.resolve());
-      spyOn(authService, 'setDataProtection').and.returnValue(Promise.resolve());
-      spyOn(router, 'navigateByUrl').and.returnValue(Promise.resolve());
+      authServiceMock.setup(x => x.register).is(() => Promise.resolve({ user: { uid: 'cqSUnC0IjgQ22GG1bOHVc7EIJD33' } }));
+      userServiceMock.setup(x => x.setPersonalData).is(() => Promise.resolve());
+      userServiceMock.setup(x => x.setDataProtection).is(() => Promise.resolve());
+      routerMock.setup(x => x.navigateByUrl).is(() => Promise.resolve(true));
 
       await fixture.whenRenderingDone();
       fillAccountFormAndSubmit('h.simpson@knnl.de', '1L0v3D0nuts');
@@ -149,21 +165,20 @@ describe('RegisterPageComponent', () => {
       await fixture.whenStable();
 
       expect(authService.register).toHaveBeenCalledWith('h.simpson@knnl.de', '1L0v3D0nuts');
-      expect(authService.setPersonalData).toHaveBeenCalledWith({
-        dob: '', firstname: 'Homer', lastname: 'Simpson', favoriteTeams: '', interests: '', mobile: ''
+      expect(userService.setPersonalData).toHaveBeenCalledWith('cqSUnC0IjgQ22GG1bOHVc7EIJD33', {
+        email: 'h.simpson@knnl.de', dob: '', firstname: 'Homer', lastname: 'Simpson', favoriteTeams: '', interests: '', mobile: ''
       });
-      expect(authService.setDataProtection).toHaveBeenCalledWith('news', true);
-      expect(authService.setDataProtection).toHaveBeenCalledWith('newPost', false);
-      expect(authService.setDataProtection).toHaveBeenCalledWith('reply', true);
-      expect(authService.setDataProtection).toHaveBeenCalledWith('results', true);
-      expect(authService.setDataProtection).toHaveBeenCalledWith('whatsApp', true);
-      expect(authService.setDataProtection).toHaveBeenCalledWith('whatsAppGroup', false);
+      expect(userService.setDataProtection).toHaveBeenCalledWith('cqSUnC0IjgQ22GG1bOHVc7EIJD33', 'news', true);
+      expect(userService.setDataProtection).toHaveBeenCalledWith('cqSUnC0IjgQ22GG1bOHVc7EIJD33', 'newPost', false);
+      expect(userService.setDataProtection).toHaveBeenCalledWith('cqSUnC0IjgQ22GG1bOHVc7EIJD33', 'reply', true);
+      expect(userService.setDataProtection).toHaveBeenCalledWith('cqSUnC0IjgQ22GG1bOHVc7EIJD33', 'results', true);
+      expect(userService.setDataProtection).toHaveBeenCalledWith('cqSUnC0IjgQ22GG1bOHVc7EIJD33', 'whatsApp', true);
+      expect(userService.setDataProtection).toHaveBeenCalledWith('cqSUnC0IjgQ22GG1bOHVc7EIJD33', 'whatsAppGroup', false);
       expect(router.navigateByUrl).toHaveBeenCalledWith('/');
     });
 
     it('with duplicate email', async () => {
-      spyOn(authService, 'register').and.returnValue(Promise.reject({ code: 'auth/email-already-in-use' }));
-      spyOn(notificationService, 'error');
+      authServiceMock.setup(x => x.register).is(() => Promise.reject({ code: 'auth/email-already-in-use' }));
 
       await fixture.whenRenderingDone();
       fillAccountFormAndSubmit('h.simpson@knnl.de', '1L0v3D0nuts');
@@ -171,13 +186,13 @@ describe('RegisterPageComponent', () => {
       fillDataProtectionFormAndSubmit(true, false, true, true, true, false);
       await fixture.whenStable();
 
+      expect(authService.register).toHaveBeenCalledWith('h.simpson@knnl.de', '1L0v3D0nuts');
       // tslint:disable-next-line:max-line-length
       expect(notificationService.error).toHaveBeenCalledWith('Bereits vergeben', 'Diese E-Mail Adresse wird bereits von einem anderen Account verwendet');
     });
 
     it('with unexpected error', async () => {
-      spyOn(authService, 'register').and.throwError('Internet kaputt');
-      spyOn(notificationService, 'fatal');
+      authServiceMock.setup(x => x.register).is(() => Promise.reject(new Error('Internet kaputt')));
 
       await fixture.whenRenderingDone();
       fillAccountFormAndSubmit('h.simpson@knnl.de', '1L0v3D0nuts');

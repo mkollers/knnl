@@ -1,42 +1,38 @@
 import { TestBed } from '@angular/core/testing';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestore } from 'angularfire2/firestore';
-import { auth } from 'firebase';
+import * as firebase from 'firebase/app';
+import { Mock } from 'ts-mocks/lib';
 
-import { PersonalData } from '../models/personal-data';
 import { AuthService } from './auth.service';
 
 describe('AuthService', () => {
-  let angularFireAuth: AngularFireAuth;
-  let db: AngularFirestore;
+  // Mocks
+  let angularFireAuthMock: Mock<AngularFireAuth>;
+  let authMock: Mock<firebase.auth.Auth>;
+
+  // Providers
   let service: AuthService;
+  let angularFireAuth: AngularFireAuth;
 
   beforeEach(() => {
+    authMock = new Mock<firebase.auth.Auth>({
+      currentUser: { email: 'Indiana@Jones.de' },
+      createUserWithEmailAndPassword: () => { },
+      signInWithEmailAndPassword: () => { },
+      signOut: () => Promise.resolve()
+    });
+    angularFireAuthMock = new Mock<AngularFireAuth>({ auth: authMock.Object });
+
     TestBed.configureTestingModule({
       providers: [
         AuthService,
-        {
-          provide: AngularFireAuth, useValue: {
-            auth: {
-              currentUser: { email: 'Indiana@Jones.de' },
-              createUserWithEmailAndPassword: () => { },
-              signInWithEmailAndPassword: () => { },
-              signOut: () => Promise.resolve()
-            }
-          }
-        },
-        {
-          provide: AngularFirestore, useValue: {
-            collection: () => { }
-          }
-        }
+        { provide: AngularFireAuth, useValue: angularFireAuthMock.Object },
       ]
     });
   });
 
   beforeEach(() => {
     angularFireAuth = TestBed.get(AngularFireAuth);
-    db = TestBed.get(AngularFirestore);
     service = TestBed.get(AuthService);
   });
 
@@ -44,53 +40,16 @@ describe('AuthService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should create an account and an empty user dataset', async () => {
-    spyOn(angularFireAuth.auth, 'createUserWithEmailAndPassword').and.returnValue(Promise.resolve());
-    const doc = { set: () => { } };
-    const collection = { doc: () => doc };
-    spyOn(db, 'collection').and.returnValue(collection);
-    spyOn(collection, 'doc').and.returnValue(doc);
-    spyOn(doc, 'set').and.returnValue(Promise.resolve());
+  it('should create an account', async () => {
+    authMock.setup(x => x.createUserWithEmailAndPassword).is(() => Promise.resolve());
 
     await service.register('Indiana@Jones.de', 'SlapMe');
 
-    expect(db.collection).toHaveBeenCalledWith('users');
-    expect(collection.doc).toHaveBeenCalledWith('Indiana@Jones.de');
-    expect(doc.set).toHaveBeenCalledWith({}, { merge: true });
     expect(angularFireAuth.auth.createUserWithEmailAndPassword).toHaveBeenCalledWith('Indiana@Jones.de', 'SlapMe');
   });
 
-  it('should set the personal data', async () => {
-    const doc = { set: () => { } };
-    const collection = { doc: () => doc };
-    spyOn(db, 'collection').and.returnValue(collection);
-    spyOn(collection, 'doc').and.returnValue(doc);
-    spyOn(doc, 'set').and.returnValue(Promise.resolve());
-    const data: PersonalData = { firstname: 'Indiana', lastname: 'Jones', dob: null, interests: '', mobile: '' };
-
-    await service.setPersonalData(data);
-
-    expect(db.collection).toHaveBeenCalledWith('users');
-    expect(collection.doc).toHaveBeenCalledWith('Indiana@Jones.de');
-    expect(doc.set).toHaveBeenCalledWith(data, { merge: true });
-  });
-
-  it('should set the data protection settings', async () => {
-    const doc = { set: () => { } };
-    const collection = { doc: () => doc };
-    spyOn(db, 'collection').and.returnValue(collection);
-    spyOn(collection, 'doc').and.returnValue(doc);
-    spyOn(doc, 'set').and.returnValue(Promise.resolve());
-
-    await service.setDataProtection('news', true);
-
-    expect(db.collection).toHaveBeenCalledWith('users');
-    expect(collection.doc).toHaveBeenCalledWith('Indiana@Jones.de');
-    expect(doc.set).toHaveBeenCalledWith({ dataProtection: { news: true } }, { merge: true });
-  });
-
   it('should login with email and password', async () => {
-    spyOn(angularFireAuth.auth, 'signInWithEmailAndPassword').and.returnValue(Promise.resolve());
+    authMock.setup(x => x.signInWithEmailAndPassword).is(() => Promise.resolve());
 
     await service.login('Indiana@Jones.de', 'SlapMe');
 
@@ -98,7 +57,7 @@ describe('AuthService', () => {
   });
 
   it('should signout', async () => {
-    spyOn(angularFireAuth.auth, 'signOut').and.returnValue(Promise.resolve());
+    authMock.setup(x => x.signOut).is(() => Promise.resolve());
 
     await service.logout();
 

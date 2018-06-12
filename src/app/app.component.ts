@@ -26,7 +26,7 @@ export class AppComponent {
     userService: UserService
   ) {
     this.user$ = authService.authState$.pipe(
-      switchMap(user => !user ? of(null) : userService.getByEmail(user.email))
+      switchMap(user => !user ? of(null) : userService.getByUid(user.uid))
     );
 
     this.registerIcons();

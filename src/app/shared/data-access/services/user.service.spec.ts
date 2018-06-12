@@ -1,54 +1,71 @@
 import { TestBed } from '@angular/core/testing';
-import {
-  Action,
-  AngularFirestore,
-  AngularFirestoreCollection,
-  AngularFirestoreDocument,
-  DocumentData,
-  DocumentSnapshot,
-} from 'angularfire2/firestore';
+import { AngularFireAction, AngularFireDatabase, AngularFireObject, DatabaseSnapshot } from 'angularfire2/database';
 import { of as observableOf } from 'rxjs';
 import { Mock } from 'ts-mocks/lib';
 
+import { PersonalData } from '../../auth/models/personal-data';
+import { User } from '../models/user';
 import { UserService } from './user.service';
 
 describe('UserService', () => {
   // Mocks
-  let angularFirestoreMock: Mock<AngularFirestore>;
-  let angularFirestoreCollectionMock: Mock<AngularFirestoreCollection>;
-  let angularFirestoreDocumentMock: Mock<AngularFirestoreDocument>;
+  let angularFireDatabaseMock: Mock<AngularFireDatabase>;
+  let angularFireObjectMock: Mock<AngularFireObject<User>>;
 
-  // Dependencies
+  // Providers
   let service: UserService;
-  let db: AngularFirestore;
+  let db: AngularFireDatabase;
 
   beforeEach(() => {
-    angularFirestoreDocumentMock = new Mock<AngularFirestoreDocument>({ snapshotChanges: () => { } });
-    angularFirestoreCollectionMock = new Mock<AngularFirestoreCollection>({ doc: () => angularFirestoreDocumentMock.Object });
-    angularFirestoreMock = new Mock<AngularFirestore>({ collection: () => angularFirestoreCollectionMock.Object });
+    angularFireObjectMock = new Mock<AngularFireObject<User>>({
+      snapshotChanges: () => { },
+      update: () => { }
+    });
+    angularFireDatabaseMock = new Mock<AngularFireDatabase>({ object: () => angularFireObjectMock.Object });
 
     TestBed.configureTestingModule({
       providers: [
         UserService,
-        { provide: AngularFirestore, useValue: angularFirestoreMock.Object },
+        { provide: AngularFireDatabase, useValue: angularFireDatabaseMock.Object },
       ]
     });
   });
 
   beforeEach(() => {
     service = TestBed.get(UserService);
-    db = TestBed.get(AngularFirestore);
+    db = TestBed.get(AngularFireDatabase);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should get user by email', async () => {
-    const snapshotMock = new Mock<Action<DocumentSnapshot<DocumentData>>>({ payload: { data: () => { } } });
-    angularFirestoreDocumentMock.setup(o => o.snapshotChanges).is(() => observableOf(snapshotMock.Object));
+  const uid = 'cqSUnC0IjgQ22GG1bOHVc7EIJD33';
 
-    const user = await service.getByEmail('James@Bond.de').toPromise();
-    expect(db.collection).toHaveBeenCalledWith('users');
+  it('should get user by uid', async () => {
+    const snapshotMock = new Mock<AngularFireAction<DatabaseSnapshot<User>>>({ payload: { key: '', val: () => { } } });
+    angularFireObjectMock.setup(o => o.snapshotChanges).is(() => observableOf(snapshotMock.Object));
+
+    await service.getByUid(uid).toPromise();
+    expect(db.object).toHaveBeenCalledWith(`users/${uid}`);
+  });
+
+  it('should set the personal data', async () => {
+    angularFireObjectMock.setup(o => o.update).is(() => Promise.resolve());
+    const data: PersonalData = { email: 'Indiana@Jones.de', firstname: 'Indiana', lastname: 'Jones', dob: null, interests: '', mobile: '' };
+
+    await service.setPersonalData(uid, data);
+
+    expect(db.object).toHaveBeenCalledWith(`users/${uid}`);
+    expect(angularFireObjectMock.Object.update).toHaveBeenCalledWith(data);
+  });
+
+  it('should set the data protection settings', async () => {
+    angularFireObjectMock.setup(o => o.update).is(() => Promise.resolve());
+
+    await service.setDataProtection(uid, 'news', true);
+
+    expect(db.object).toHaveBeenCalledWith(`users/${uid}/dataProtection`);
+    expect(angularFireObjectMock.Object.update).toHaveBeenCalledWith({ news: true });
   });
 });
