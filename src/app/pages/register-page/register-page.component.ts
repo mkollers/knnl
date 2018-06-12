@@ -38,7 +38,7 @@ export class RegisterPageComponent {
     try {
       const email: string = this.accountFg.value.email;
       const password: string = this.accountFg.value.passwords.password;
-      const personalData: PersonalData = { email: email, ... this.personalFg.value };
+      const personalData: PersonalData = { email: email, ...this.personalFg.value };
       const dataProtection = this.dataProtFg.value;
 
       const result = await this._authService.register(email, password);

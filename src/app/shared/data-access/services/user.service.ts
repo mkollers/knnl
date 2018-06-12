@@ -19,6 +19,10 @@ export class UserService {
   }
 
   async setPersonalData(uid: string, value: PersonalData) {
+    if (value.dob instanceof Date) {
+      value.dob = value.dob.getTime();
+    }
+
     await this._db.object(`users/${uid}`).update(value);
   }
 
