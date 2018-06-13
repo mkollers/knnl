@@ -10,9 +10,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
-import { AuthModule } from '../../shared/auth/auth.module';
-import { DataAccessModule } from '../../shared/data-access/data-access.module';
-import { NotificationModule } from '../../shared/notification/notification.module';
+import { AuthModule } from '../../../shared/auth/auth.module';
+import { DataAccessModule } from '../../../shared/data-access/data-access.module';
+import { NotificationModule } from '../../../shared/notification/notification.module';
 import { RegisterPageRoutingModule } from './register-page-routing.module';
 import { RegisterPageComponent } from './register-page.component';
 

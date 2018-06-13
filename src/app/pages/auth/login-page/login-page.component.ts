@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../../shared/auth/services/auth.service';
-import { NotificationService } from '../../shared/notification/services/notification.service';
+import { AuthService } from '../../../shared/auth/services/auth.service';
+import { NotificationService } from '../../../shared/notification/services/notification.service';
 import { Title } from '@angular/platform-browser';
 
 @Component({

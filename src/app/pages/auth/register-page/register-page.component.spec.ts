@@ -7,9 +7,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { Mock } from 'ts-mocks/lib';
 
-import { AuthService } from '../../shared/auth/services/auth.service';
-import { UserService } from '../../shared/data-access/services/user.service';
-import { NotificationService } from '../../shared/notification/services/notification.service';
+import { AuthService } from '../../../shared/auth/services/auth.service';
+import { UserService } from '../../../shared/data-access/services/user.service';
+import { NotificationService } from '../../../shared/notification/services/notification.service';
 import { RegisterPageComponent } from './register-page.component';
 
 describe('RegisterPageComponent', () => {

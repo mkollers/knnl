@@ -6,8 +6,8 @@ import { MatButtonModule, MatInputModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-import { AuthModule } from '../../shared/auth/auth.module';
-import { NotificationModule } from '../../shared/notification/notification.module';
+import { AuthModule } from '../../../shared/auth/auth.module';
+import { NotificationModule } from '../../../shared/notification/notification.module';
 import { LoginPageRoutingModule } from './login-page-routing.module';
 import { LoginPageComponent } from './login-page.component';
 

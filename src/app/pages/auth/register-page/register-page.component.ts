@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../../shared/auth/services/auth.service';
-import { UserService } from '../../shared/data-access/services/user.service';
-import { NotificationService } from '../../shared/notification/services/notification.service';
+import { AuthService } from '../../../shared/auth/services/auth.service';
+import { UserService } from '../../../shared/data-access/services/user.service';
+import { NotificationService } from '../../../shared/notification/services/notification.service';
 import { MatchValidator } from './validators/match-validator';
-import { PersonalData } from '../../shared/auth/models/personal-data';
+import { PersonalData } from '../../../shared/auth/models/personal-data';
 
 @Component({
   selector: 'app-register-page',

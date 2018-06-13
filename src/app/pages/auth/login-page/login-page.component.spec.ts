@@ -4,8 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../../shared/auth/services/auth.service';
-import { NotificationService } from '../../shared/notification/services/notification.service';
+import { AuthService } from '../../../shared/auth/services/auth.service';
+import { NotificationService } from '../../../shared/notification/services/notification.service';
 import { LoginPageComponent } from './login-page.component';
 
 describe('LoginPageComponent', () => {
