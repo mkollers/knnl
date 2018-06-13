@@ -10,6 +10,15 @@ const routes: Routes = [
         canActivate: [LoggedInGuard]
     },
     {
+        path: 'administration',
+        canActivate: [LoggedInGuard],
+        children: [
+            {
+                path: 'permissions', loadChildren: './pages/administration/permissions-page/permissions-page.module#PermissionsPageModule',
+            }
+        ]
+    },
+    {
         path: 'login',
         loadChildren: './pages/login-page/login-page.module#LoginPageModule',
     },

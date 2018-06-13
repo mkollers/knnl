@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { merge, Observable, of } from 'rxjs';
 import { filter, mapTo, switchMap, tap } from 'rxjs/operators';
 
@@ -37,7 +37,7 @@ export class AppComponent {
       mapTo(true)
     );
     const navigationEnd$ = router.events.pipe(
-      filter(event => event instanceof NavigationEnd || event instanceof NavigationCancel),
+      filter(event => event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError),
       mapTo(false)
     );
     this.isRouting$ = merge(navigationStart$, navigationEnd$).pipe(
@@ -53,6 +53,7 @@ export class AppComponent {
     this.registerIcon('material', 'outline-done_all');
     this.registerIcon('material', 'outline-edit');
     this.registerIcon('material', 'outline-menu');
+    this.registerIcon('material', 'outline-security');
     this.registerIcon('material', 'outline-whatshot');
   }
 
