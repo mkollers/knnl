@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
-import { AuthService } from '../../../shared/auth/services/auth.service';
-import { UserService } from '../../../shared/data-access/services/user.service';
+import { ToolbarService } from '../../../shared/layout/services/toolbar.service';
 
 @Component({
   selector: 'app-news-page',
@@ -11,5 +10,11 @@ import { UserService } from '../../../shared/data-access/services/user.service';
 })
 export class NewsPageComponent {
 
-  constructor() { }
+  constructor(
+    title: Title,
+    toolbarService: ToolbarService
+  ) {
+    title.setTitle('News');
+    toolbarService.title = 'News';
+  }
 }

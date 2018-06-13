@@ -1,6 +1,5 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { ToolbarService } from '../../services/toolbar.service';
 
@@ -16,5 +15,10 @@ export class ToolbarComponent {
 
   @Output('knnl-toggle') toggle = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(
+    toolbarService: ToolbarService
+  ) {
+    this.navigateBackUri$ = toolbarService.navigateBackUri$;
+    this.title$ = toolbarService.title$;
+  }
 }
