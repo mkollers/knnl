@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Role } from '../../../shared/data-access/models/role';
 import { RoleService } from '../../../shared/data-access/services/role.service';
 import { ToolbarService } from '../../../shared/layout/services/toolbar.service';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-permissions-page',
@@ -22,6 +23,9 @@ export class PermissionsPageComponent {
     title.setTitle('Rollen und Berechtigungen');
     toolbarService.title = 'Rollen und Berechtigungen';
 
-    this.roles$ = roleService.getAll();
+    this.roles$ = roleService.getAll().pipe(
+      tap(console.log)
+      // map(roles => )
+    );
   }
 }

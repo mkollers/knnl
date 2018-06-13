@@ -5,6 +5,7 @@ import { PermissionsPageRoutingModule } from './permissions-page-routing.module'
 import { PermissionsPageComponent } from './permissions-page.component';
 import { DataAccessModule } from '../../../shared/data-access/data-access.module';
 import { LayoutModule } from '../../../shared/layout/layout.module';
+import { RoleCardComponent } from './role-card/role-card.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { LayoutModule } from '../../../shared/layout/layout.module';
     DataAccessModule,
     LayoutModule
   ],
-  declarations: [PermissionsPageComponent]
+  declarations: [PermissionsPageComponent, RoleCardComponent]
 })
 export class PermissionsPageModule { }

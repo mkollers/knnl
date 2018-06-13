@@ -11,8 +11,10 @@ export class RoleService {
   constructor(private _db: AngularFireDatabase) { }
 
   getAll() {
-    return this._db.object<Role[]>('roles').snapshotChanges().pipe(
-      map<AngularFireAction<DatabaseSnapshot<Role[]>>, Role[]>(snapshot => ({ name: snapshot.payload.key, ...snapshot.payload.val() }))
+    return this._db.list<Role[]>('roles').snapshotChanges().pipe(
+      map<AngularFireAction<DatabaseSnapshot<Role[]>>[], Role[]>(snapshots => snapshots.map<any>(snapshot => {
+        return { name: snapshot.payload.key, ...snapshot.payload.val() };
+      }))
     );
   }
 }
