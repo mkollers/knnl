@@ -19,9 +19,17 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
-              "src/_redirects",
+              "src/_redirects",              
+              "src/assets",
               "src/favicon.ico",
-              "src/assets"
+              "src/android-chrome-192x192.png",
+              "src/apple-touch-icon.png",
+              "src/favicon-16x16.png",
+              "src/favicon-32x32.png",
+              "src/mstile-150x150.png",
+              "src/manifest.json",
+              "src/browserconfig.xml",
+              "src/manifest.json"
             ],
             "styles": [
               "src/styles.scss"
@@ -77,8 +85,17 @@
             ],
             "scripts": [],
             "assets": [
+              "src/_redirects",              
+              "src/assets",
               "src/favicon.ico",
-              "src/assets"
+              "src/android-chrome-192x192.png",
+              "src/apple-touch-icon.png",
+              "src/favicon-16x16.png",
+              "src/favicon-32x32.png",
+              "src/mstile-150x150.png",
+              "src/manifest.json",
+              "src/browserconfig.xml",
+              "src/manifest.json"
             ]
           }
         },
