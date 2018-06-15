@@ -7,6 +7,14 @@ import { CurrentUserResolver } from './shared/layout/resolvers/current-user.reso
 
 const routes: Routes = [
     {
+        path: 'login',
+        loadChildren: './pages/auth/login-page/login-page.module#LoginPageModule',
+    },
+    {
+        path: 'register',
+        loadChildren: './pages/auth/register-page/register-page.module#RegisterPageModule',
+    },
+    {
         path: '',
         component: LoggedInComponent,
         canActivate: [LoggedInGuard],
@@ -28,19 +36,11 @@ const routes: Routes = [
             { path: '**', redirectTo: 'news' }
         ]
     },
-    {
-        path: 'login',
-        loadChildren: './pages/auth/login-page/login-page.module#LoginPageModule',
-    },
-    {
-        path: 'register',
-        loadChildren: './pages/auth/register-page/register-page.module#RegisterPageModule',
-    },
-    { path: '**', redirectTo: 'news' }
+    { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, { enableTracing: true })],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }

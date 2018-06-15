@@ -54,7 +54,7 @@ export class SidenavComponent implements OnDestroy {
 
   async logout() {
     await this._authService.logout();
-    await this._router.navigateByUrl('/login');
+    this._router.navigateByUrl('/login');
   }
 
   toggle() {

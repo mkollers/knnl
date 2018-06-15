@@ -14,7 +14,6 @@ export class LoggedInComponent implements OnInit {
     route: ActivatedRoute
   ) {
     this.user = route.snapshot.data['currentUser'];
-    console.log(this.user);
   }
 
   ngOnInit() {
