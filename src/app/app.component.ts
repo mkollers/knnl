@@ -1,13 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
-import { merge, Observable, of } from 'rxjs';
-import { filter, mapTo, switchMap, tap } from 'rxjs/operators';
-
-import { AuthService } from './shared/auth/services/auth.service';
-import { User } from './shared/data-access/models/user';
-import { UserService } from './shared/data-access/services/user.service';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import { merge, Observable } from 'rxjs';
+import { filter, mapTo, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -16,23 +12,15 @@ import { UserService } from './shared/data-access/services/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  showSidenav$: Observable<boolean>;
   isRouting$: Observable<boolean>;
-  user$: Observable<User>;
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
     private _iconRegistry: MatIconRegistry,
     private _sanitizer: DomSanitizer,
-    authService: AuthService,
-    router: Router,
-    userService: UserService
+    router: Router
   ) {
     this.registerIcons();
-
-    this.user$ = authService.authState$.pipe(
-      switchMap(user => !user ? of(null) : userService.getByUid(user.uid))
-    );
 
     const navigationStart$ = router.events.pipe(
       filter(event => event instanceof NavigationStart),
