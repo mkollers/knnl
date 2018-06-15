@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule, MatIconModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 
 import { AuthModule } from '../auth/auth.module';
 import { DataAccessModule } from '../data-access/data-access.module';
+import { FooterComponent } from './components/footer/footer.component';
 import { LoggedInComponent } from './components/logged-in/logged-in.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
@@ -14,6 +16,7 @@ import { CurrentUserResolver } from './resolvers/current-user.resolver';
   imports: [
     CommonModule,
     RouterModule,
+    FlexLayoutModule,
 
     // Material
     MatButtonModule,
@@ -28,15 +31,17 @@ import { CurrentUserResolver } from './resolvers/current-user.resolver';
   declarations: [
     SidenavComponent,
     ToolbarComponent,
-    LoggedInComponent
+    LoggedInComponent,
+    FooterComponent
   ],
   providers: [
     CurrentUserResolver
   ],
   exports: [
+    FooterComponent,
+    LoggedInComponent,
     SidenavComponent,
-    ToolbarComponent,
-    LoggedInComponent
+    ToolbarComponent
   ]
 })
 export class LayoutModule { }

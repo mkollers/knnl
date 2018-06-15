@@ -15,6 +15,7 @@ import { DataAccessModule } from '../../../shared/data-access/data-access.module
 import { NotificationModule } from '../../../shared/notification/notification.module';
 import { RegisterPageRoutingModule } from './register-page-routing.module';
 import { RegisterPageComponent } from './register-page.component';
+import { LayoutModule } from '../../../shared/layout/layout.module';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { RegisterPageComponent } from './register-page.component';
     // Custom
     AuthModule,
     DataAccessModule,
+    LayoutModule,
     NotificationModule
   ],
   declarations: [RegisterPageComponent],

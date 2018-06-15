@@ -1,0 +1,32 @@
+footer {
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 1em 4em;
+  background: #003f84;
+  background-image: url(/assets/polygon.svg);
+  background-repeat: no-repeat;
+  background-position: 100%;
+  background-size: 130% auto;
+}
+
+a {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: inline;
+  list-style-type: none;
+  padding-right: 20px;
+}

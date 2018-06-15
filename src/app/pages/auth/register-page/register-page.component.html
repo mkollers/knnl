@@ -1,5 +1,6 @@
-<section fxFlexFill fxLayoutAlign="center start">
-  <mat-card fxFlex fxFlex.gt-xs="450px">
+<section fxLayout="column" fxFlexFill>
+  <span fxFlex></span>
+  <mat-card fxFlexAlign="center" ngStyle.gt-xs="width: 350px;">
     <mat-card-title>Konto erstellen</mat-card-title>
     <mat-card-content fxLayout="column">
       <mat-vertical-stepper [linear]="true" #stepper>
@@ -59,8 +60,7 @@
           <ng-template matStepLabel>Datenschutzeinstellungen</ng-template>
           <form fxLayout="column" novalidate [formGroup]="dataProtFg" (ngSubmit)="!inProgress && finish()">
             <p style="margin-top: 0">Um dich über aktuelle Geschehnisse auf dem Laufenden halten zu können, möchten wir dich gerne per E-Mail kontaktieren.
-              <br
-              /> Bei welchen Ereignissen dürfen wir dir E-Mails senden?
+              <br /> Bei welchen Ereignissen dürfen wir dir E-Mails senden?
             </p>
             <mat-checkbox class="news" formControlName="news">Neuigkeiten</mat-checkbox>
             <mat-checkbox class="new-post" formControlName="newPost">Neue Beiträge im Forum</mat-checkbox>
@@ -79,4 +79,6 @@
       </mat-vertical-stepper>
     </mat-card-content>
   </mat-card>
+  <span fxFlex></span>
+  <app-footer></app-footer>
 </section>

@@ -1,5 +1,6 @@
-<form fxFlex fxFlexFill fxLayoutAlign="center center" novalidate [formGroup]="loginFg" (ngSubmit)="loginFg.valid && login()">
-  <mat-card fxFlex fxFlex.gt-xs="450px">
+<form fxLayout="column" fxFlexFill novalidate [formGroup]="loginFg" (ngSubmit)="loginFg.valid && login()">
+  <span fxFlex></span>
+  <mat-card fxFlexAlign="center" ngStyle.gt-xs="width: 350px;">
     <mat-card-title>Anmelden</mat-card-title>
     <mat-card-content fxLayout="column">
       <mat-form-field>
@@ -16,4 +17,6 @@
       <button type="submit" mat-button color="primary" [disabled]="inProgress">Anmelden</button>
     </mat-card-actions>
   </mat-card>
+  <span fxFlex></span>
+  <app-footer></app-footer>
 </form>

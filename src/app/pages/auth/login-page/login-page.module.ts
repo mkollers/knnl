@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { AuthModule } from '../../../shared/auth/auth.module';
+import { LayoutModule } from '../../../shared/layout/layout.module';
 import { NotificationModule } from '../../../shared/notification/notification.module';
 import { LoginPageRoutingModule } from './login-page-routing.module';
 import { LoginPageComponent } from './login-page.component';
@@ -26,6 +27,7 @@ import { LoginPageComponent } from './login-page.component';
 
     // Custom
     AuthModule,
+    LayoutModule,
     NotificationModule
   ],
   declarations: [LoginPageComponent]
