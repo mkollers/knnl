@@ -1,16 +1,9 @@
-<app-sidenav *ngIf="user$ | async as user; else content;" [knnl-user]="user" #sidenav>
-  <app-toolbar (knnl-toggle)="sidenav.toggle()"></app-toolbar>
-  <ng-container *ngTemplateOutlet="content"></ng-container>
-</app-sidenav>
-
-<ng-template #content>
-  <router-outlet></router-outlet>
-</ng-template>
+<router-outlet></router-outlet>
 
 <section class="overlay" *ngIf="isRouting$ | async">
   <div class="loader">
     <svg class="circular" viewBox="25 25 50 50">
-      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
     </svg>
   </div>
 </section>

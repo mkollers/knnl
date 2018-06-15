@@ -1,0 +1,4 @@
+<app-sidenav [knnl-user]="user" #sidenav>
+  <app-toolbar (knnl-toggle)="sidenav.toggle()"></app-toolbar>
+  <router-outlet></router-outlet>
+</app-sidenav>

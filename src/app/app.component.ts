@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import { ActivatedRoute, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { merge, Observable, of } from 'rxjs';
 import { filter, mapTo, switchMap, tap } from 'rxjs/operators';
 
@@ -16,6 +16,7 @@ import { UserService } from './shared/data-access/services/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
+  showSidenav$: Observable<boolean>;
   isRouting$: Observable<boolean>;
   user$: Observable<User>;
 
@@ -28,6 +29,7 @@ export class AppComponent {
     userService: UserService
   ) {
     this.registerIcons();
+
     this.user$ = authService.authState$.pipe(
       switchMap(user => !user ? of(null) : userService.getByUid(user.uid))
     );

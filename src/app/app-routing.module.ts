@@ -2,20 +2,29 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LoggedInGuard } from './shared/auth/guards/logged-in.guard';
+import { LoggedInComponent } from './shared/layout/components/logged-in/logged-in.component';
+import { CurrentUserResolver } from './shared/layout/resolvers/current-user.resolver';
 
 const routes: Routes = [
     {
-        path: 'news',
-        loadChildren: './pages/news/news-page/news-page.module#NewsPageModule',
-        canActivate: [LoggedInGuard]
-    },
-    {
-        path: 'administration',
+        path: '',
+        component: LoggedInComponent,
         canActivate: [LoggedInGuard],
+        resolve: { currentUser: CurrentUserResolver },
         children: [
             {
-                path: 'permissions', loadChildren: './pages/administration/permissions-page/permissions-page.module#PermissionsPageModule',
-            }
+                path: 'news',
+                loadChildren: './pages/news/news-page/news-page.module#NewsPageModule',
+            },
+            {
+                path: 'administration',
+                children: [
+                    {
+                        path: 'permissions',
+                        loadChildren: './pages/administration/permissions-page/permissions-page.module#PermissionsPageModule',
+                    }
+                ]
+            },
         ]
     },
     {
