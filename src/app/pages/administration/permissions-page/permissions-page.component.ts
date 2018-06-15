@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 import { Role } from '../../../shared/data-access/models/role';
-import { RoleService } from '../../../shared/data-access/services/role.service';
 import { ToolbarService } from '../../../shared/layout/services/toolbar.service';
-import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-permissions-page',
@@ -13,19 +11,15 @@ import { map, tap } from 'rxjs/operators';
   styleUrls: ['./permissions-page.component.css']
 })
 export class PermissionsPageComponent {
-  roles$: Observable<Role[]>;
+  roles: Role[];
 
   constructor(
-    roleService: RoleService,
+    route: ActivatedRoute,
     title: Title,
     toolbarService: ToolbarService
   ) {
     title.setTitle('Rollen und Berechtigungen');
     toolbarService.title = 'Rollen und Berechtigungen';
-
-    this.roles$ = roleService.getAll().pipe(
-      tap(console.log)
-      // map(roles => )
-    );
+    this.roles = route.snapshot.data['roles'];
   }
 }

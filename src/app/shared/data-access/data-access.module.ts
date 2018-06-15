@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
+import { RolesResolver } from './resolvers/roles.resolver';
 import { UserService } from './services/user.service';
 
 @NgModule({
@@ -12,7 +13,8 @@ import { UserService } from './services/user.service';
     AngularFireDatabaseModule
   ],
   providers: [
-    UserService
+    UserService,
+    RolesResolver
   ],
   declarations: []
 })

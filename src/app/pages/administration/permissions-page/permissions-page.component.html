@@ -1,4 +1,4 @@
-<section class="container" fxLayout.xs="column" fxLayout="row wrap"  fxLayoutAlign="start stretch" fxLayoutGap="16px">
-  <app-role-card *ngFor="let role of roles$ | async" [knnl-role]="role" fxLayout="row" fxFlex.xs="100%" fxFlex.sm="calc(50% - 16px)">
-  </app-role-card>
+<section class="container" fxLayout.xs="column" fxLayout="row wrap" fxLayoutAlign="start stretch" fxLayoutGap="16px">
+    <app-role-card *ngFor="let role of roles" [knnl-role]="role" fxLayout="row" fxFlex.xs="100%" fxFlex.sm="calc(50% - 16px)">
+    </app-role-card>
 </section>
