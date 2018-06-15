@@ -1,3 +1,6 @@
-<p>
-  role-card works!
-</p>
+<a [routerLink]="role.$key" fxFlex fxLayout="row">
+  <mat-card fxFlex>
+    <mat-card-title>{{ role.name }}</mat-card-title>
+    <mat-card-subtitle>{{ role.description }}</mat-card-subtitle>
+  </mat-card>
+</a>

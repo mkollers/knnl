@@ -13,7 +13,7 @@ export class RoleService {
   getAll() {
     return this._db.list<Role[]>('roles').snapshotChanges().pipe(
       map<AngularFireAction<DatabaseSnapshot<Role[]>>[], Role[]>(snapshots => snapshots.map<any>(snapshot => {
-        return { name: snapshot.payload.key, ...snapshot.payload.val() };
+        return { $key: snapshot.payload.key, ...snapshot.payload.val() };
       }))
     );
   }
