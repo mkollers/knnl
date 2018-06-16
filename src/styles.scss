@@ -32,3 +32,14 @@ input:-webkit-autofill {
   font-weight: 400;
   text-transform: uppercase;
 }
+
+a.mat-fab,
+button.mat-fab {
+    position: fixed;
+    bottom: 62px;
+    right: 24px;
+    z-index: 2;
+    @media (max-width: 600px) {
+        right: 16px;
+    }
+}

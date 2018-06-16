@@ -1,23 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-
-import { DataAccessModule } from '../../../shared/data-access/data-access.module';
-import { LayoutModule } from '../../../shared/layout/layout.module';
-import { RoleModule } from '../../../shared/role/role.module';
-import { PermissionsPageRoutingModule } from './permissions-page-routing.module';
-import { PermissionsPageComponent } from './permissions-page.component';
-import { RolesResolver } from './roles.resolver';
+import { MatInputModule } from '@angular/material/input';
+import { RoleCardComponent } from './components/role-card/role-card.component';
+import { CreateRoleDialogComponent } from './dialogs/create-role-dialog/create-role-dialog.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    PermissionsPageRoutingModule,
+    ReactiveFormsModule,
     FlexLayoutModule,
 
     // Material
@@ -25,17 +23,19 @@ import { RolesResolver } from './roles.resolver';
     MatCardModule,
     MatChipsModule,
     MatDialogModule,
+    MatFormFieldModule,
     MatIconModule,
-
-    // Custom
-    DataAccessModule,
-    LayoutModule,
-    RoleModule
+    MatInputModule
   ],
   declarations: [
-    PermissionsPageComponent
-  ], providers: [
-    RolesResolver
+    CreateRoleDialogComponent,
+    RoleCardComponent
+  ],
+  entryComponents: [
+    CreateRoleDialogComponent
+  ],
+  exports: [
+    RoleCardComponent
   ]
 })
-export class PermissionsPageModule { }
+export class RoleModule { }

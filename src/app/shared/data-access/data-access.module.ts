@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
-import { RolesResolver } from './resolvers/roles.resolver';
+import { RoleService } from './services/role.service';
 import { UserService } from './services/user.service';
 
 @NgModule({
@@ -14,7 +14,7 @@ import { UserService } from './services/user.service';
   ],
   providers: [
     UserService,
-    RolesResolver
+    RoleService
   ],
   declarations: []
 })

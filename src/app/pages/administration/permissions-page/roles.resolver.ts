@@ -3,8 +3,8 @@ import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 
-import { Role } from '../models/role';
-import { RoleService } from '../services/role.service';
+import { Role } from '../../../shared/data-access/models/role';
+import { RoleService } from '../../../shared/data-access/services/role.service';
 
 @Injectable()
 export class RolesResolver implements Resolve<Observable<Role[]>> {

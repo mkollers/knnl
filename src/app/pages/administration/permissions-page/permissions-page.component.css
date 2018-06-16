@@ -1,3 +1,8 @@
 .container {
-    padding: 16px;
+    padding: 8px;    
+}
+
+a {
+    text-decoration: none;
+    margin: 8px;
 }

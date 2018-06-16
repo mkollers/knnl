@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { RolesResolver } from '../../../shared/data-access/resolvers/roles.resolver';
+import { RolesResolver } from '../../../pages/administration/permissions-page/roles.resolver';
 import { PermissionsPageComponent } from './permissions-page.component';
 
 const routes: Routes = [{
