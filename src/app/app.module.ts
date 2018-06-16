@@ -30,8 +30,7 @@ export class RavenErrorHandler implements ErrorHandler {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NoRoutingDirective
+    AppComponent
   ],
   imports: [
     AppRoutingModule,
@@ -52,7 +51,9 @@ export class RavenErrorHandler implements ErrorHandler {
     DataAccessModule,
     LayoutModule
   ],
-  providers: [],
+  providers: [
+    { provide: ErrorHandler, useClass: RavenErrorHandler }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
