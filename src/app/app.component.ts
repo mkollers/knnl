@@ -41,6 +41,7 @@ export class AppComponent {
     this.registerIcon('material', 'outline-add');
     this.registerIcon('material', 'outline-arrow_back');
     this.registerIcon('material', 'outline-close');
+    this.registerIcon('material', 'outline-delete');
     this.registerIcon('material', 'outline-done_all');
     this.registerIcon('material', 'outline-edit');
     this.registerIcon('material', 'outline-menu');

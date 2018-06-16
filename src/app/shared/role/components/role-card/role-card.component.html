@@ -1,7 +1,7 @@
 <mat-card fxFlex>
   <mat-card-title>
     <span fxFlex>{{ role.name }}</span>
-    <button mat-icon-button>
+    <button knnl-no-routing mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon svgIcon="material:outline-more_vert"></mat-icon>
     </button>
   </mat-card-title>
@@ -12,3 +12,12 @@
     </mat-chip-list>
   </mat-card-content>
 </mat-card>
+
+<mat-menu #menu>
+  <button mat-menu-item>
+    <mat-icon svgIcon="material:outline-edit"></mat-icon>Bearbeiten
+  </button>
+  <button mat-menu-item>
+    <mat-icon svgIcon="material:outline-delete"></mat-icon>Löschen
+  </button>
+</mat-menu>
