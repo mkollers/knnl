@@ -1,7 +1,7 @@
-<app-sidenav [knnl-user]="user" #sidenav>
-  <app-toolbar (knnl-toggle)="sidenav.toggle()"></app-toolbar>
+<knnl-sidenav [knnl-user]="user" #sidenav>
+  <knnl-toolbar (knnl-toggle)="sidenav.toggle()"></knnl-toolbar>
   <section id="content">
     <router-outlet></router-outlet>
   </section>
-  <app-footer></app-footer>
-</app-sidenav>
+  <knnl-footer></knnl-footer>
+</knnl-sidenav>

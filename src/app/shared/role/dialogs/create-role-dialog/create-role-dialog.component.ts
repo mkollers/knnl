@@ -5,7 +5,7 @@ import { MatDialogRef } from '@angular/material';
 import { Role } from '../../../data-access/models/role';
 
 @Component({
-  selector: 'app-create-role-dialog',
+  selector: 'knnl-create-role-dialog',
   templateUrl: './create-role-dialog.component.html',
   styleUrls: ['./create-role-dialog.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

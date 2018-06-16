@@ -1,5 +1,10 @@
 <mat-card fxFlex>
-  <mat-card-title>{{ role.name }}</mat-card-title>
+  <mat-card-title>
+    <span fxFlex>{{ role.name }}</span>
+    <button mat-icon-button>
+      <mat-icon svgIcon="material:outline-more_vert"></mat-icon>
+    </button>
+  </mat-card-title>
   <mat-card-subtitle>{{ role.description }}</mat-card-subtitle>
   <mat-card-content>
     <mat-chip-list>

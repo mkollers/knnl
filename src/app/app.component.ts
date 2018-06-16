@@ -6,7 +6,7 @@ import { merge, Observable } from 'rxjs';
 import { filter, mapTo, tap } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-root',
+  selector: 'knnl-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -44,6 +44,7 @@ export class AppComponent {
     this.registerIcon('material', 'outline-done_all');
     this.registerIcon('material', 'outline-edit');
     this.registerIcon('material', 'outline-menu');
+    this.registerIcon('material', 'outline-more_vert');
     this.registerIcon('material', 'outline-security');
     this.registerIcon('material', 'outline-whatshot');
   }

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ToolbarService } from '../../services/toolbar.service';
 
 @Component({
-  selector: 'app-toolbar',
+  selector: 'knnl-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

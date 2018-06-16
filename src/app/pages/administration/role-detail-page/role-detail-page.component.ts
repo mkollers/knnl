@@ -8,7 +8,7 @@ import { ToolbarService } from '../../../shared/layout/services/toolbar.service'
 import { PermissionChange } from '../../../shared/role/components/role-details/permission-change';
 
 @Component({
-  selector: 'app-role-detail-page',
+  selector: 'knnl-role-detail-page',
   templateUrl: './role-detail-page.component.html',
   styleUrls: ['./role-detail-page.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

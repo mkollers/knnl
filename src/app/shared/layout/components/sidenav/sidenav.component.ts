@@ -9,7 +9,7 @@ import { AuthService } from '../../../auth/services/auth.service';
 import { User } from '../../../data-access/models/user';
 
 @Component({
-  selector: 'app-sidenav',
+  selector: 'knnl-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

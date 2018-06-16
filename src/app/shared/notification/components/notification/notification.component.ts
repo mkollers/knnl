@@ -4,7 +4,7 @@ import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar'
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-notification',
+  selector: 'knnl-notification',
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

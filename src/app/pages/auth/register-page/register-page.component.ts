@@ -10,7 +10,7 @@ import { NotificationService } from '../../../shared/notification/services/notif
 import { MatchValidator } from './validators/match-validator';
 
 @Component({
-  selector: 'app-register-page',
+  selector: 'knnl-register-page',
   templateUrl: './register-page.component.html',
   styleUrls: ['./register-page.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

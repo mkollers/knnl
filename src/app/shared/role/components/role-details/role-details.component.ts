@@ -5,7 +5,7 @@ import { Role } from '../../../data-access/models/role';
 import { PermissionChange } from './permission-change';
 
 @Component({
-  selector: 'app-role-details',
+  selector: 'knnl-role-details',
   templateUrl: './role-details.component.html',
   styleUrls: ['./role-details.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

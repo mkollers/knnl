@@ -7,7 +7,7 @@ import { AuthService } from '../../../shared/auth/services/auth.service';
 import { NotificationService } from '../../../shared/notification/services/notification.service';
 
 @Component({
-  selector: 'app-login-page',
+  selector: 'knnl-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

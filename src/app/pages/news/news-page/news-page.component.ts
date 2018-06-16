@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { ToolbarService } from '../../../shared/layout/services/toolbar.service';
 
 @Component({
-  selector: 'app-news-page',
+  selector: 'knnl-news-page',
   templateUrl: './news-page.component.html',
   styleUrls: ['./news-page.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

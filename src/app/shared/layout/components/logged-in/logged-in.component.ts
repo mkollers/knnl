@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from '../../../data-access/models/user';
 
 @Component({
-  selector: 'app-logged-in',
+  selector: 'knnl-logged-in',
   templateUrl: './logged-in.component.html',
   styleUrls: ['./logged-in.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
