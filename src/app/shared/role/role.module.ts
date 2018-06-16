@@ -15,6 +15,7 @@ import { HelpersModule } from '../helpers/helpers.module';
 import { RoleCardComponent } from './components/role-card/role-card.component';
 import { RoleDetailsComponent } from './components/role-details/role-details.component';
 import { CreateRoleDialogComponent } from './dialogs/create-role-dialog/create-role-dialog.component';
+import { PermissionPipe } from './pipes/permission.pipe';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { CreateRoleDialogComponent } from './dialogs/create-role-dialog/create-r
   declarations: [
     CreateRoleDialogComponent,
     RoleCardComponent,
-    RoleDetailsComponent
+    RoleDetailsComponent,
+    PermissionPipe
   ],
   entryComponents: [
     CreateRoleDialogComponent

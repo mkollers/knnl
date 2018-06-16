@@ -21,7 +21,7 @@ export class PermissionsPageComponent {
     private _dialog: MatDialog,
     private _roleService: RoleService,
     private _router: Router,
-    route: ActivatedRoute,
+    private _route: ActivatedRoute,
     title: Title,
     toolbar: ToolbarService
   ) {
@@ -29,7 +29,7 @@ export class PermissionsPageComponent {
     toolbar.title = 'Rollen und Berechtigungen';
     toolbar.navigateBackUri = '';
 
-    this.roles = route.snapshot.data['roles'];
+    this.roles = this._route.snapshot.data['roles'];
   }
 
   async create() {
@@ -43,7 +43,7 @@ export class PermissionsPageComponent {
 
     if (role) {
       const $key = await this._roleService.create(role);
-      this._router.navigate([$key]);
+      this._router.navigate([$key], { relativeTo: this._route });
     }
   }
 }

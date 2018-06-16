@@ -13,6 +13,10 @@ import { PermissionChange } from './permission-change';
 export class RoleDetailsComponent {
   @Input('knnl-role') role: Role;
   @Output('knnl-permission-change') permissionChange = new EventEmitter<PermissionChange>();
+  permissions = {
+    news: ['news_view'],
+    administration: ['administration_view', 'roles_view', 'roles_create', 'roles_edit', 'roles_delete']
+  };
 
   constructor() { }
 

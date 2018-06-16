@@ -3,7 +3,7 @@
   <mat-card-subtitle>{{ role.description }}</mat-card-subtitle>
   <mat-card-content>
     <mat-chip-list>
-      <mat-chip *ngFor="let permission of role.permissions | keys">{{ permission }}</mat-chip>
+      <mat-chip *ngFor="let p of role.permissions | keys">{{ p | permission }}</mat-chip>
     </mat-chip-list>
   </mat-card-content>
 </mat-card>
