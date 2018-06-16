@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import { ToolbarService } from '../../../shared/layout/services/toolbar.service';
@@ -6,7 +6,8 @@ import { ToolbarService } from '../../../shared/layout/services/toolbar.service'
 @Component({
   selector: 'app-news-page',
   templateUrl: './news-page.component.html',
-  styleUrls: ['./news-page.component.css']
+  styleUrls: ['./news-page.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsPageComponent {
 

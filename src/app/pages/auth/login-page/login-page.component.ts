@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../../shared/auth/services/auth.service';
 import { NotificationService } from '../../../shared/notification/services/notification.service';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  styleUrls: ['./login-page.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginPageComponent {
   loginFg: FormGroup;

@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
+import { PersonalData } from '../../../shared/auth/models/personal-data';
 import { AuthService } from '../../../shared/auth/services/auth.service';
 import { UserService } from '../../../shared/data-access/services/user.service';
 import { NotificationService } from '../../../shared/notification/services/notification.service';
 import { MatchValidator } from './validators/match-validator';
-import { PersonalData } from '../../../shared/auth/models/personal-data';
 
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
-  styleUrls: ['./register-page.component.css']
+  styleUrls: ['./register-page.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterPageComponent {
   accountFg: FormGroup;
