@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-title>{{ role.name }}</mat-card-title>
+  <mat-card-subtitle>{{ role.description }}</mat-card-subtitle>
+  <mat-card-content>
+    <h3>News</h3>
+    <section fxLayout="row wrap" fxLayoutGap="8px">
+      <mat-slide-toggle id="news_view" [checked]="role.permissions['news_view']" (change)="change($event)">News lesen</mat-slide-toggle>
+    </section>
+    <h3>Administration</h3>
+    <section fxLayout="row wrap" fxLayoutGap="8px">
+      <mat-slide-toggle id="administration_view" [checked]="role.permissions['administration_view']" (change)="change($event)">Administration sehen</mat-slide-toggle>
+      <mat-slide-toggle id="roles_view" [checked]="role.permissions['roles_view']" (change)="change($event)">Rollen sehen</mat-slide-toggle>
+      <mat-slide-toggle id="roles_create" [checked]="role.permissions['roles_create']" (change)="change($event)">Rolle erstellen</mat-slide-toggle>
+      <mat-slide-toggle id="roles_edit" [checked]="role.permissions['roles_edit']" (change)="change($event)">Rolle bearbeiten</mat-slide-toggle>
+      <mat-slide-toggle id="roles_delete" [checked]="role.permissions['roles_delete']" (change)="change($event)">Rolle löschen</mat-slide-toggle>
+    </section>
+  </mat-card-content>
+</mat-card>

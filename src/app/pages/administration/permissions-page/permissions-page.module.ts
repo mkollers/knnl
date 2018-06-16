@@ -22,8 +22,6 @@ import { RolesResolver } from './roles.resolver';
 
     // Material
     MatButtonModule,
-    MatCardModule,
-    MatChipsModule,
     MatDialogModule,
     MatIconModule,
 

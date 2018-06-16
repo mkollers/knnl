@@ -9,7 +9,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
+import { HelpersModule } from '../helpers/helpers.module';
 import { RoleCardComponent } from './components/role-card/role-card.component';
+import { RoleDetailsComponent } from './components/role-details/role-details.component';
 import { CreateRoleDialogComponent } from './dialogs/create-role-dialog/create-role-dialog.component';
 
 @NgModule({
@@ -25,17 +29,23 @@ import { CreateRoleDialogComponent } from './dialogs/create-role-dialog/create-r
     MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+    MatSlideToggleModule,
+
+    // Custom
+    HelpersModule
   ],
   declarations: [
     CreateRoleDialogComponent,
-    RoleCardComponent
+    RoleCardComponent,
+    RoleDetailsComponent
   ],
   entryComponents: [
     CreateRoleDialogComponent
   ],
   exports: [
-    RoleCardComponent
+    RoleCardComponent,
+    RoleDetailsComponent
   ]
 })
 export class RoleModule { }

@@ -19,6 +19,7 @@ const routes: Routes = [
         component: LoggedInComponent,
         canActivate: [LoggedInGuard],
         resolve: { currentUser: CurrentUserResolver },
+        runGuardsAndResolvers: 'always',
         children: [
             {
                 path: 'news',

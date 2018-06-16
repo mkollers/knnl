@@ -5,8 +5,11 @@ import { RolesResolver } from '../../../pages/administration/permissions-page/ro
 import { PermissionsPageComponent } from './permissions-page.component';
 
 const routes: Routes = [{
-  path: '', component: PermissionsPageComponent,
-  resolve: { roles: RolesResolver }
+  path: '',
+  children: [
+    { path: '', component: PermissionsPageComponent, resolve: { roles: RolesResolver }, runGuardsAndResolvers: 'always' },
+    { path: ':id', loadChildren: '../role-detail-page/role-detail-page.module#RoleDetailPageModule' }
+  ]
 }];
 
 @NgModule({

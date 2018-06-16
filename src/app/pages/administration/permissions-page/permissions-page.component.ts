@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -23,10 +23,12 @@ export class PermissionsPageComponent {
     private _router: Router,
     route: ActivatedRoute,
     title: Title,
-    toolbarService: ToolbarService
+    toolbar: ToolbarService
   ) {
     title.setTitle('Rollen und Berechtigungen');
-    toolbarService.title = 'Rollen und Berechtigungen';
+    toolbar.title = 'Rollen und Berechtigungen';
+    toolbar.navigateBackUri = '';
+
     this.roles = route.snapshot.data['roles'];
   }
 
