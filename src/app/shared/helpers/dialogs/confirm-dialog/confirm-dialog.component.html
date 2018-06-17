@@ -1,0 +1,19 @@
+<div fxLayout="row">
+    <h2 fxFlex mat-dialog-title>{{ data.title }}</h2>
+    <button mat-icon-button type="button" (click)="dialogRef.close()" tabindex="-1">
+      <mat-icon svgIcon="material:close"></mat-icon>
+    </button>
+  </div>
+  <mat-dialog-content>
+    <p>{{ data.text }}</p>
+  </mat-dialog-content>
+  <mat-dialog-actions fxLayoutAlign="end end">
+    <button mat-button (click)="dialogRef.close()" tabindex="-1">
+      <ng-container i18n="@@confirm-dialog:no">No</ng-container>
+    </button>
+    <button mat-button color="primary" (click)="dialogRef.close(true)">
+      <mat-icon svgIcon="material:done_all"></mat-icon>
+      <ng-container i18n="@@confirm-dialog:yes">Yes</ng-container>
+    </button>
+  </mat-dialog-actions>
+  
