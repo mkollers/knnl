@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Role } from '../../../shared/data-access/models/role';
 import { RoleService } from '../../../shared/data-access/services/role.service';
+import { ConfirmDialogData } from '../../../shared/helpers/dialogs/confirm-dialog/confirm-dialog-data';
+import { ConfirmDialogComponent } from '../../../shared/helpers/dialogs/confirm-dialog/confirm-dialog.component';
 import { ToolbarService } from '../../../shared/layout/services/toolbar.service';
 import { CreateRoleDialogComponent } from '../../../shared/role/dialogs/create-role-dialog/create-role-dialog.component';
 
@@ -44,6 +46,21 @@ export class PermissionsPageComponent {
     if (role) {
       const $key = await this._roleService.create(role);
       this._router.navigate([$key], { relativeTo: this._route });
+    }
+  }
+
+  async delete(role: Role) {
+    const dialogRef = this._dialog.open<ConfirmDialogComponent, ConfirmDialogData, Role>(ConfirmDialogComponent, {
+      data: { title: 'Bist du sicher?', text: `Möchtest du die Rolle "${role.name}" wirklich endgültig löschen?` },
+      disableClose: true,
+      minWidth: '300px',
+      maxWidth: '450px'
+    });
+
+    const confirmed = await dialogRef.beforeClose().toPromise();
+
+    if (confirmed) {
+      await this._roleService.delete(role.$key);
     }
   }
 }

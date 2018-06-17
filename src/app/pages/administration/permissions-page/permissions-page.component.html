@@ -1,7 +1,7 @@
 <section class="container" fxLayout="row wrap">
   <a fxFlexAlign="stretch" [routerLink]="role.$key" *ngFor="let role of roles" fxFlex.xs="100%" fxFlex.sm="0 1 calc(50% - 16px)" fxFlex.md="0 1 calc(50% - 16px)"
     fxFlex.lg="0 1 calc(33% - 16px)" fxFlex.xl="0 1 calc(25% - 16px)">
-    <knnl-role-card fxFlex [knnl-role]="role"></knnl-role-card>
+    <knnl-role-card fxFlex [knnl-role]="role" (knnl-delete)="delete($event)"></knnl-role-card>
   </a>
 </section>
 <button color="primary" mat-fab (click)="create()">

@@ -15,6 +15,10 @@ export class RoleService {
     return this._db.list<Role>('roles').push(role).then(ref => ref.key);
   }
 
+  delete(key: string) {
+    return this._db.list<Role>(`roles/${key}`).remove();
+  }
+
   getAll() {
     return this._db.list<Role[]>('roles', ref => ref.orderByChild('name')).snapshotChanges().pipe(
       map<AngularFireAction<DatabaseSnapshot<any>>[], Role[]>(actions => actions.map<Role>(action => {
@@ -23,8 +27,8 @@ export class RoleService {
     );
   }
 
-  getById(id: string) {
-    return this._db.object<Role>(`roles/${id}`).snapshotChanges().pipe(
+  getById(key: string) {
+    return this._db.object<Role>(`roles/${key}`).snapshotChanges().pipe(
       map<AngularFireAction<DatabaseSnapshot<Role>>, Role>(action => Role.fromAction(action))
     );
   }
