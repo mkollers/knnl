@@ -1,3 +1,3 @@
-<section fxLayout="row">
-  <knnl-role-details [knnl-role]="role" (knnl-permission-change)="onPermissionChange($event)"></knnl-role-details>
+<section fxLayout="row" *ngIf="role$ | async as role">
+  <knnl-role-details [knnl-role]="role" (knnl-permission-change)="onPermissionChange(role, $event)"></knnl-role-details>
 </section>

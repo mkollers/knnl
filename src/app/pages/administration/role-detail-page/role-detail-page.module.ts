@@ -7,7 +7,6 @@ import { LayoutModule } from '../../../shared/layout/layout.module';
 import { RoleModule } from '../../../shared/role/role.module';
 import { RoleDetailPageRoutingModule } from './role-detail-page-routing.module';
 import { RoleDetailPageComponent } from './role-detail-page.component';
-import { RoleResolver } from './role.resolver';
 
 @NgModule({
   imports: [
@@ -20,9 +19,6 @@ import { RoleResolver } from './role.resolver';
     LayoutModule,
     RoleModule
   ],
-  declarations: [RoleDetailPageComponent],
-  providers: [
-    RoleResolver
-  ]
+  declarations: [RoleDetailPageComponent]
 })
 export class RoleDetailPageModule { }
