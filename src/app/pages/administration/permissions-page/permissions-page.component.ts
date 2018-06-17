@@ -9,6 +9,7 @@ import { ConfirmDialogData } from '../../../shared/helpers/dialogs/confirm-dialo
 import { ConfirmDialogComponent } from '../../../shared/helpers/dialogs/confirm-dialog/confirm-dialog.component';
 import { ToolbarService } from '../../../shared/layout/services/toolbar.service';
 import { CreateRoleDialogComponent } from '../../../shared/role/dialogs/create-role-dialog/create-role-dialog.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'knnl-permissions-page',
@@ -17,7 +18,7 @@ import { CreateRoleDialogComponent } from '../../../shared/role/dialogs/create-r
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PermissionsPageComponent {
-  roles: Role[];
+  roles$: Observable<Role[]>;
 
   constructor(
     private _dialog: MatDialog,
@@ -31,7 +32,7 @@ export class PermissionsPageComponent {
     toolbar.title = 'Rollen und Berechtigungen';
     toolbar.navigateBackUri = '';
 
-    this.roles = this._route.snapshot.data['roles'];
+    this.roles$ = this._roleService.getAll();
   }
 
   async create() {
