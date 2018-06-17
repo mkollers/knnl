@@ -1,7 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
+import { AuthService } from '../../../auth/services/auth.service';
 import { User } from '../../../data-access/models/user';
+import { UserService } from '../../../data-access/services/user.service';
 
 @Component({
   selector: 'knnl-logged-in',
@@ -10,11 +13,14 @@ import { User } from '../../../data-access/models/user';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoggedInComponent {
-  user: User;
+  user$: Observable<User>;
 
   constructor(
-    route: ActivatedRoute
+    private _authService: AuthService,
+    private _userService: UserService
   ) {
-    this.user = route.snapshot.data['currentUser'];
+    this.user$ = this._authService.authState$.pipe(
+      switchMap(user => !user ? of(null) : this._userService.getByUid(user.uid))
+    );
   }
 }

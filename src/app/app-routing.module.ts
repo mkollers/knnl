@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoggedInGuard } from './shared/auth/guards/logged-in.guard';
 import { LoggedInComponent } from './shared/layout/components/logged-in/logged-in.component';
-import { CurrentUserResolver } from './shared/layout/resolvers/current-user.resolver';
 
 const routes: Routes = [
     {
@@ -18,8 +17,6 @@ const routes: Routes = [
         path: '',
         component: LoggedInComponent,
         canActivate: [LoggedInGuard],
-        resolve: { currentUser: CurrentUserResolver },
-        runGuardsAndResolvers: 'always',
         children: [
             {
                 path: 'news',

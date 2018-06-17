@@ -10,7 +10,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoggedInComponent } from './components/logged-in/logged-in.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { CurrentUserResolver } from './resolvers/current-user.resolver';
 
 @NgModule({
   imports: [
@@ -33,9 +32,6 @@ import { CurrentUserResolver } from './resolvers/current-user.resolver';
     ToolbarComponent,
     LoggedInComponent,
     FooterComponent
-  ],
-  providers: [
-    CurrentUserResolver
   ],
   exports: [
     FooterComponent,

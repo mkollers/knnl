@@ -1,4 +1,4 @@
-<knnl-sidenav [knnl-user]="user" #sidenav>
+<knnl-sidenav *ngIf="user$ | async as user" [knnl-user]="user" #sidenav>
   <knnl-toolbar (knnl-toggle)="sidenav.toggle()"></knnl-toolbar>
   <section id="content">
     <router-outlet></router-outlet>
