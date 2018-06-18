@@ -1,1 +1,3 @@
-{{ users$ | async | json }}
+<ng-container *ngIf="users$ | async as users">
+    <knnl-user-table [knnl-users]="users"></knnl-user-table>
+</ng-container>
