@@ -14,7 +14,6 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './shared/auth/auth.module';
 import { DataAccessModule } from './shared/data-access/data-access.module';
 import { LayoutModule } from './shared/layout/layout.module';
-import { NoRoutingDirective } from './shared/helpers/directives/no-routing.directive';
 
 Raven
   .config('https://d0d205afba434a84969b0c6f6741238f@sentry.io/1227633')
@@ -22,6 +21,7 @@ Raven
 
 export class RavenErrorHandler implements ErrorHandler {
   handleError(err: any): void {
+    console.error(err);
     if (environment.production) {
       Raven.captureException(err.originalError || err);
     }

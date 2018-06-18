@@ -1,4 +1,6 @@
-export interface User {
+import { AngularFireAction, DatabaseSnapshot } from 'angularfire2/database';
+
+export class User {
     uid?: string;
     email: string;
     dob: number;
@@ -14,4 +16,11 @@ export interface User {
         whatsApp: boolean;
         whatsAppGroup: boolean;
     };
+
+    static fromAction(action: AngularFireAction<DatabaseSnapshot<any>>): User {
+        const val = action.payload.val();
+        return {
+            uid: action.payload.key, ...val
+        };
+    }
 }

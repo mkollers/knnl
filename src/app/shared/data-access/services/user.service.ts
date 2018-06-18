@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, DatabaseSnapshot, AngularFireAction } from 'angularfire2/database';
+import { AngularFireAction, AngularFireDatabase, DatabaseSnapshot } from 'angularfire2/database';
+import { isMoment, Moment } from 'moment';
 import { map } from 'rxjs/operators';
 
 import { PersonalData } from '../../auth/models/personal-data';
 import { User } from '../models/user';
-import { isMoment, Moment } from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +13,15 @@ export class UserService {
 
   constructor(private _db: AngularFireDatabase) { }
 
+  getAll() {
+    return this._db.list<User>('users', ref => ref.orderByChild('email')).snapshotChanges().pipe(
+      map<AngularFireAction<DatabaseSnapshot<any>>[], User[]>(actions => actions.map(action => User.fromAction(action)))
+    );
+  }
+
   getByUid(uid: string) {
     return this._db.object<User>(`users/${uid}`).snapshotChanges().pipe(
-      map<AngularFireAction<DatabaseSnapshot<User>>, User>(snapshot => ({ uid: snapshot.payload.key, ...snapshot.payload.val() }))
+      map<AngularFireAction<DatabaseSnapshot<User>>, User>(action => User.fromAction(action))
     );
   }
 
