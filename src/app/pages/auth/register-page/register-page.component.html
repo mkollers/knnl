@@ -19,11 +19,11 @@
             </mat-form-field>
             <mat-form-field formGroupName="passwords">
               <input matInput class="password" type="password" placeholder="Kennwort" formControlName="password" required>
-              <mat-error *ngIf="accountFg.controls['passwords'].controls['password']?.errors?.required || accountFg.controls['passwords'].controls['password']?.errors?.minlength">Das Kennwort muss mindestens 6 Zeichen lang sein</mat-error>
+              <mat-error *ngIf="accountFg.controls['passwords']['controls'].password?.errors?.required || accountFg.controls['passwords']['controls'].password?.errors?.minlength">Das Kennwort muss mindestens 6 Zeichen lang sein</mat-error>
             </mat-form-field>
             <mat-form-field formGroupName="passwords">
               <input class="confirm" matInput type="password" placeholder="Kennwort wiederholen" formControlName="repeat" required>
-              <mat-error *ngIf="accountFg.controls['passwords']?.controls['repeat']?.errors?.mismatch">Die Kennwörter sind nicht identisch</mat-error>
+              <mat-error *ngIf="accountFg.controls['passwords']['controls'].repeat?.errors?.mismatch">Die Kennwörter sind nicht identisch</mat-error>
             </mat-form-field>
             <button class="submit-account" style="margin-top: 8px;" fxFlexAlign="start" color="primary" mat-raised-button type="submit">Weiter</button>
           </form>
