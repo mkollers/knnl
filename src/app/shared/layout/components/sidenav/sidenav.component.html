@@ -11,8 +11,13 @@
       </ul>
     </nav>
     <nav>
-      <h3>Administration</h3>      
+      <h3>Administration</h3>
       <ul>
+        <li>
+          <a mat-button routerLink="/administration/users" routerLinkActive="active">
+            <mat-icon svgIcon="material:outline-supervised_user_circle"></mat-icon>&nbsp;Benutzerverwaltung
+          </a>
+        </li>
         <li>
           <a mat-button routerLink="/administration/permissions" routerLinkActive="active">
             <mat-icon svgIcon="material:outline-security"></mat-icon>&nbsp;Rollen & Berechtigungen
@@ -21,7 +26,7 @@
       </ul>
     </nav>
     <nav *ngIf="user">
-      <h3>{{ user.firstname }} {{ user.lastname }}</h3>      
+      <h3>{{ user.firstname }} {{ user.lastname }}</h3>
       <ul>
         <li>
           <button class="logout" mat-button (click)="logout()">

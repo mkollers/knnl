@@ -26,6 +26,10 @@ const routes: Routes = [
                 path: 'administration',
                 children: [
                     {
+                        path: 'users',
+                        loadChildren: './pages/administration/user-list-page/user-list-page.module#UserListPageModule',
+                    },
+                    {
                         path: 'permissions',
                         loadChildren: './pages/administration/permissions-page/permissions-page.module#PermissionsPageModule',
                     }

@@ -47,6 +47,7 @@ export class AppComponent {
     this.registerIcon('material', 'outline-menu');
     this.registerIcon('material', 'outline-more_vert');
     this.registerIcon('material', 'outline-security');
+    this.registerIcon('material', 'outline-supervised_user_circle');
     this.registerIcon('material', 'outline-whatshot');
   }
 
