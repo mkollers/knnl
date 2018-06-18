@@ -10,6 +10,7 @@ import { ConfirmDialogData } from '../../../shared/helpers/dialogs/confirm-dialo
 import { ConfirmDialogComponent } from '../../../shared/helpers/dialogs/confirm-dialog/confirm-dialog.component';
 import { ToolbarService } from '../../../shared/layout/services/toolbar.service';
 import { CreateRoleDialogComponent } from '../../../shared/role/dialogs/create-role-dialog/create-role-dialog.component';
+import { EditRoleDialogComponent } from '../../../shared/role/dialogs/edit-role-dialog/edit-role-dialog.component';
 
 @Component({
   selector: 'knnl-role-list-page',
@@ -47,6 +48,21 @@ export class RoleListPageComponent {
     if (role) {
       const $key = await this._roleService.create(role);
       this._router.navigate([$key], { relativeTo: this._route });
+    }
+  }
+
+  async edit(prev: Role) {
+    const dialogRef = this._dialog.open<EditRoleDialogComponent, any, Role>(EditRoleDialogComponent, {
+      minWidth: '300px',
+      maxWidth: '450px',
+      data: prev,
+      disableClose: true
+    });
+
+    const updated = await dialogRef.beforeClose().toPromise();
+
+    if (updated) {
+      await this._roleService.update(prev.$key, updated);
     }
   }
 

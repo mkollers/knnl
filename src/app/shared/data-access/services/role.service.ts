@@ -19,6 +19,10 @@ export class RoleService {
     return this._db.list<Role>(`roles/${key}`).remove();
   }
 
+  update($key: string, role: Role) {
+    return this._db.object<Role>(`roles/${$key}`).update(role);
+  }
+
   getAll() {
     return this._db.list<Role[]>('roles', ref => ref.orderByChild('name')).snapshotChanges().pipe(
       map<AngularFireAction<DatabaseSnapshot<any>>[], Role[]>(actions => actions.map<Role>(action => {

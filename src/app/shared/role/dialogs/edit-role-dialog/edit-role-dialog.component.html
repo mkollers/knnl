@@ -1,6 +1,6 @@
 <form [formGroup]="fg" (ngSubmit)="fg.valid && finish()">
   <div fxLayout="row">
-    <h2 fxFlex mat-dialog-title>Neue Rolle</h2>
+    <h2 fxFlex mat-dialog-title>„{{ role.name }}" bearbeiten</h2>
     <button mat-icon-button type="button" (click)="dialogRef.close()" tabindex="-1">
       <mat-icon svgIcon="material:outline-close"></mat-icon>
     </button>
