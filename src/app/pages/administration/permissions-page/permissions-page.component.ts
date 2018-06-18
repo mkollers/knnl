@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { Role } from '../../../shared/data-access/models/role';
 import { RoleService } from '../../../shared/data-access/services/role.service';
@@ -9,7 +10,6 @@ import { ConfirmDialogData } from '../../../shared/helpers/dialogs/confirm-dialo
 import { ConfirmDialogComponent } from '../../../shared/helpers/dialogs/confirm-dialog/confirm-dialog.component';
 import { ToolbarService } from '../../../shared/layout/services/toolbar.service';
 import { CreateRoleDialogComponent } from '../../../shared/role/dialogs/create-role-dialog/create-role-dialog.component';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'knnl-permissions-page',

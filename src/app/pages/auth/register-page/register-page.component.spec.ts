@@ -1,7 +1,8 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatCheckboxModule, MatStepperModule } from '@angular/material';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatStepperModule } from '@angular/material/stepper';
 import { By, Title } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
@@ -24,7 +25,7 @@ describe('RegisterPageComponent', () => {
   let titleMock: Mock<Title>;
 
   beforeEach(async(() => {
-    authServiceMock = new Mock<AuthService>({ register: () => Promise.resolve()});
+    authServiceMock = new Mock<AuthService>({ register: () => Promise.resolve() });
     userServiceMock = new Mock<UserService>({
       setPersonalData: () => { },
       setDataProtection: () => { }

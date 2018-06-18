@@ -1,6 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
-import { MatPaginatorIntl, MatTableDataSource } from '@angular/material';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnDestroy } from '@angular/core';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import * as _ from 'lodash';
 import { Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
