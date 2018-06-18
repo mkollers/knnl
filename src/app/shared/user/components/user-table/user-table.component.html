@@ -18,6 +18,17 @@
     </mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef="roles">
+    <mat-header-cell *matHeaderCellDef>
+      <ng-container>Rollen</ng-container>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let data">
+      <mat-chip-list selectable="false">
+        <mat-chip color="primary" color="primary" selected="true" *ngFor="let role of data.roles">{{ role }}</mat-chip>
+      </mat-chip-list>
+    </mat-cell>
+  </ng-container>
+
   <ng-container matColumnDef="email">
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       <ng-container>E-Mail</ng-container>

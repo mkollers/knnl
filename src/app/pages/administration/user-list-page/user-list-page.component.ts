@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { keyBy } from 'lodash';
+import { combineLatest, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { User } from '../../../shared/data-access/models/user';
+import { RoleService } from '../../../shared/data-access/services/role.service';
 import { UserService } from '../../../shared/data-access/services/user.service';
+import { UserTableViewModel } from '../../../shared/user/components/user-table/user-table.view-model';
 
 @Component({
   selector: 'knnl-user-list-page',
@@ -10,9 +13,16 @@ import { UserService } from '../../../shared/data-access/services/user.service';
   styleUrls: ['./user-list-page.component.css']
 })
 export class UserListPageComponent {
-  users$: Observable<User[]>;
+  data$: Observable<UserTableViewModel[]>;
 
-  constructor(userService: UserService) {
-    this.users$ = userService.getAll();
+  constructor(
+    roleService: RoleService,
+    userService: UserService
+  ) {
+    const roles$ = roleService.getAll().pipe(map(roles => keyBy(roles, r => r.$key)));
+    const users$ = userService.getAll();
+    this.data$ = combineLatest(roles$, users$).pipe(
+      map(([roles, users]) => users.map(user => new UserTableViewModel(roles, user)))
+    );
   }
 }

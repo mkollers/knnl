@@ -2,11 +2,11 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import * as _ from 'lodash';
+import { orderBy } from 'lodash';
 import { Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { User } from '../../../data-access/models/user';
+import { UserTableViewModel } from './user-table.view-model';
 
 @Component({
   selector: 'knnl-user-table',
@@ -15,10 +15,10 @@ import { User } from '../../../data-access/models/user';
 })
 export class UserTableComponent implements OnChanges, OnDestroy {
   private _subscriptions: Subscription[] = [];
-  dataSource = new MatTableDataSource<User>();
+  dataSource = new MatTableDataSource<UserTableViewModel>();
   displayedColumns: string[];
 
-  @Input('knnl-users') users: User[];
+  @Input('knnl-data') data: UserTableViewModel[];
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
@@ -40,8 +40,8 @@ export class UserTableComponent implements OnChanges, OnDestroy {
   }
 
   ngOnChanges() {
-    if (this.users) {
-      const data = _.orderBy(this.users, u => u.email);
+    if (this.data) {
+      const data = orderBy(this.data, u => u.email);
       this.dataSource.data = data;
       this._changeDetectorRef.markForCheck();
     }
@@ -57,7 +57,7 @@ export class UserTableComponent implements OnChanges, OnDestroy {
     if (isSmall) {
       this.displayedColumns = ['firstname', 'lastname'];
     } else {
-      this.displayedColumns = ['email', 'firstname', 'lastname'];
+      this.displayedColumns = ['email', 'firstname', 'lastname', 'roles'];
     }
     this._changeDetectorRef.markForCheck();
   }

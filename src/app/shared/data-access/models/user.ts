@@ -16,6 +16,7 @@ export class User {
         whatsApp: boolean;
         whatsAppGroup: boolean;
     };
+    roles: string[];
 
     static fromAction(action: AngularFireAction<DatabaseSnapshot<any>>): User {
         const val = action.payload.val();
