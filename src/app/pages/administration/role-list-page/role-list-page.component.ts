@@ -12,12 +12,12 @@ import { ToolbarService } from '../../../shared/layout/services/toolbar.service'
 import { CreateRoleDialogComponent } from '../../../shared/role/dialogs/create-role-dialog/create-role-dialog.component';
 
 @Component({
-  selector: 'knnl-permissions-page',
-  templateUrl: './permissions-page.component.html',
-  styleUrls: ['./permissions-page.component.css'],
+  selector: 'knnl-role-list-page',
+  templateUrl: './role-list-page.component.html',
+  styleUrls: ['./role-list-page.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PermissionsPageComponent {
+export class RoleListPageComponent {
   roles$: Observable<Role[]>;
 
   constructor(

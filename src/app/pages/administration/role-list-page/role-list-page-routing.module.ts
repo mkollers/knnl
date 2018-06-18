@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PermissionsPageComponent } from './permissions-page.component';
+import { RoleListPageComponent } from './role-list-page.component';
 
 const routes: Routes = [{
   path: '',
   children: [
-    { path: '', component: PermissionsPageComponent },
+    { path: '', component: RoleListPageComponent },
     { path: ':id', loadChildren: '../role-detail-page/role-detail-page.module#RoleDetailPageModule' }
   ]
 }];
@@ -15,4 +15,4 @@ const routes: Routes = [{
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PermissionsPageRoutingModule { }
+export class RoleListPageRoutingModule { }

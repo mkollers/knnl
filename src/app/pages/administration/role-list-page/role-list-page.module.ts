@@ -8,13 +8,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { DataAccessModule } from '../../../shared/data-access/data-access.module';
 import { LayoutModule } from '../../../shared/layout/layout.module';
 import { RoleModule } from '../../../shared/role/role.module';
-import { PermissionsPageRoutingModule } from './permissions-page-routing.module';
-import { PermissionsPageComponent } from './permissions-page.component';
+import { RoleListPageRoutingModule } from './role-list-page-routing.module';
+import { RoleListPageComponent } from './role-list-page.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    PermissionsPageRoutingModule,
+    RoleListPageRoutingModule,
     FlexLayoutModule,
 
     // Material
@@ -28,7 +28,7 @@ import { PermissionsPageComponent } from './permissions-page.component';
     RoleModule
   ],
   declarations: [
-    PermissionsPageComponent
+    RoleListPageComponent
   ]
 })
-export class PermissionsPageModule { }
+export class RoleListPageModule { }

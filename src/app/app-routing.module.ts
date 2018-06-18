@@ -31,7 +31,7 @@ const routes: Routes = [
                     },
                     {
                         path: 'permissions',
-                        loadChildren: './pages/administration/permissions-page/permissions-page.module#PermissionsPageModule',
+                        loadChildren: './pages/administration/role-list-page/role-list-page.module#RoleListPageModule',
                     }
                 ]
             },
