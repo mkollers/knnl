@@ -41,3 +41,6 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row [class.clickable]="click.observers.length" (click)="click.emit(data)" *matRowDef="let data; columns: displayedColumns;"></mat-row>
 </mat-table>
+
+<mat-paginator [length]="dataSource.data?.length" [pageSize]="15" [pageSizeOptions]="[5, 15, 25, 50]">
+</mat-paginator>

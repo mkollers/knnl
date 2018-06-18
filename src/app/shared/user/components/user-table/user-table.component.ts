@@ -1,6 +1,17 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnDestroy, Output } from '@angular/core';
-import { MatPaginatorIntl } from '@angular/material/paginator';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { orderBy } from 'lodash';
 import { Subscription } from 'rxjs';
@@ -11,13 +22,15 @@ import { UserTableViewModel } from './user-table.view-model';
 @Component({
   selector: 'knnl-user-table',
   templateUrl: './user-table.component.html',
-  styleUrls: ['./user-table.component.css']
+  styleUrls: ['./user-table.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UserTableComponent implements OnChanges, OnDestroy {
+export class UserTableComponent implements OnChanges, AfterViewInit, OnDestroy {
   private _subscriptions: Subscription[] = [];
   dataSource = new MatTableDataSource<UserTableViewModel>();
   displayedColumns: string[];
 
+  @ViewChild(MatPaginator) protected paginator: MatPaginator;
   @Input('knnl-data') data: UserTableViewModel[];
   @Output('knnl-click') click = new EventEmitter<UserTableViewModel>();
 
@@ -46,6 +59,10 @@ export class UserTableComponent implements OnChanges, OnDestroy {
       this.dataSource.data = data;
       this._changeDetectorRef.markForCheck();
     }
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
   /** Unsubscribes all subscriptions to avoid memory leaks */

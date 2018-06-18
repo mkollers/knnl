@@ -50,6 +50,11 @@ button.mat-fab {
 }
 
 /* Table */
+.mat-table,
+.mat-paginator {
+  background: transparent;
+}
+
 .mat-row.clickable {
   cursor: pointer;
 }

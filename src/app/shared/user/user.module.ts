@@ -4,6 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 
 import { UserTableComponent } from './components/user-table/user-table.component';
@@ -17,6 +18,7 @@ import { UserTableComponent } from './components/user-table/user-table.component
     MatButtonModule,
     MatChipsModule,
     MatIconModule,
+    MatPaginatorModule,
     MatTableModule
   ],
   declarations: [UserTableComponent],
