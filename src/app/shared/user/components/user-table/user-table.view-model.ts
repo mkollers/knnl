@@ -4,12 +4,14 @@ import { Role } from '../../../data-access/models/role';
 import { User } from '../../../data-access/models/user';
 
 export class UserTableViewModel {
+    uid: string;
     firstname: string;
     lastname: string;
     email: string;
     roles: string[];
 
     constructor(roles: Dictionary<Role>, user: User) {
+        this.uid = user.uid;
         this.email = user.email;
         this.firstname = user.firstname;
         this.lastname = user.lastname;

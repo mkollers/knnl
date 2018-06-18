@@ -6,7 +6,8 @@ import { UserListPageComponent } from './user-list-page.component';
 const routes: Routes = [{
   path: '',
   children: [
-    { path: '', component: UserListPageComponent }
+    { path: '', component: UserListPageComponent },
+    { path: ':uid', loadChildren: '../user-detail-page/user-detail-page.module#UserDetailPageModule' }
   ]
 }];
 

@@ -39,5 +39,5 @@
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let data; columns: displayedColumns;"></mat-row>
+  <mat-row [class.clickable]="click.observers.length" (click)="click.emit(data)" *matRowDef="let data; columns: displayedColumns;"></mat-row>
 </mat-table>

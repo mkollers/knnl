@@ -1,5 +1,5 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, Input, OnChanges, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnDestroy, Output } from '@angular/core';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { orderBy } from 'lodash';
@@ -19,6 +19,7 @@ export class UserTableComponent implements OnChanges, OnDestroy {
   displayedColumns: string[];
 
   @Input('knnl-data') data: UserTableViewModel[];
+  @Output('knnl-click') click = new EventEmitter<UserTableViewModel>();
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,

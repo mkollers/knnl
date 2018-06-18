@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAction, AngularFireDatabase, DatabaseSnapshot } from 'angularfire2/database';
 import { isMoment, Moment } from 'moment';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { PersonalData } from '../../auth/models/personal-data';
 import { User } from '../models/user';

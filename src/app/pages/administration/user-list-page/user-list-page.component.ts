@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { Router, ActivatedRoute } from '@angular/router';
 import { keyBy } from 'lodash';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { RoleService } from '../../../shared/data-access/services/role.service';
 import { UserService } from '../../../shared/data-access/services/user.service';
-import { UserTableViewModel } from '../../../shared/user/components/user-table/user-table.view-model';
-import { Title } from '@angular/platform-browser';
 import { ToolbarService } from '../../../shared/layout/services/toolbar.service';
+import { UserTableViewModel } from '../../../shared/user/components/user-table/user-table.view-model';
 
 @Component({
   selector: 'knnl-user-list-page',
@@ -18,6 +19,8 @@ export class UserListPageComponent {
   data$: Observable<UserTableViewModel[]>;
 
   constructor(
+    private _route: ActivatedRoute,
+    private _router: Router,
     roleService: RoleService,
     title: Title,
     toolbar: ToolbarService,
@@ -32,5 +35,9 @@ export class UserListPageComponent {
     this.data$ = combineLatest(roles$, users$).pipe(
       map(([roles, users]) => users.map(user => new UserTableViewModel(roles, user)))
     );
+  }
+
+  onClick($event: UserTableViewModel) {
+    this._router.navigate([$event.uid], { relativeTo: this._route });
   }
 }

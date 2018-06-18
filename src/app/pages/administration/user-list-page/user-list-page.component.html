@@ -1,3 +1,3 @@
 <ng-container *ngIf="data$ | async as data">
-  <knnl-user-table [knnl-data]="data"></knnl-user-table>
+  <knnl-user-table [knnl-data]="data" (knnl-click)="onClick($event)"></knnl-user-table>
 </ng-container>
