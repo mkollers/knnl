@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 import { RoleService } from '../../../shared/data-access/services/role.service';
 import { UserService } from '../../../shared/data-access/services/user.service';
 import { UserTableViewModel } from '../../../shared/user/components/user-table/user-table.view-model';
+import { Title } from '@angular/platform-browser';
+import { ToolbarService } from '../../../shared/layout/services/toolbar.service';
 
 @Component({
   selector: 'knnl-user-list-page',
@@ -17,8 +19,14 @@ export class UserListPageComponent {
 
   constructor(
     roleService: RoleService,
+    title: Title,
+    toolbar: ToolbarService,
     userService: UserService
   ) {
+    title.setTitle('Benutzerverwaltung');
+    toolbar.title = 'Benutzerverwaltung';
+    toolbar.navigateBackUri = null;
+
     const roles$ = roleService.getAll().pipe(map(roles => keyBy(roles, r => r.$key)));
     const users$ = userService.getAll();
     this.data$ = combineLatest(roles$, users$).pipe(
