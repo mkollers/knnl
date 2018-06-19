@@ -62,7 +62,9 @@ export class UserTableComponent implements OnChanges, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    if (this.paginator) {
+      this.dataSource.paginator = this.paginator;
+    }
   }
 
   /** Unsubscribes all subscriptions to avoid memory leaks */
