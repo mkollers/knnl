@@ -4,7 +4,7 @@ export interface PersonalData {
     email: string;
     firstname: string;
     lastname: string;
-    dob: Date | number | Moment;
+    dob: Moment;
     interests: string;
     mobile: string;
 }

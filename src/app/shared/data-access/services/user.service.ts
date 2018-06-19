@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAction, AngularFireDatabase, DatabaseSnapshot } from 'angularfire2/database';
-import { isMoment, Moment } from 'moment';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { PersonalData } from '../../auth/models/personal-data';
 import { User } from '../models/user';
@@ -26,13 +25,11 @@ export class UserService {
   }
 
   async setPersonalData(uid: string, value: PersonalData) {
-    if (value.dob instanceof Date) {
-      value.dob = value.dob.getTime();
-    } else if (isMoment(value.dob)) {
-      value.dob = (value.dob as Moment).unix();
-    }
+    const data: any = { ...value };
+    data.dob = value.dob.toISOString();
+    console.log(data);
 
-    await this._db.object(`users/${uid}`).update(value);
+    await this._db.object(`users/${uid}`).update(data);
   }
 
   async setDataProtection(uid: string, key: string, value: boolean) {
