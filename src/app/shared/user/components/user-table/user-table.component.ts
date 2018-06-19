@@ -12,6 +12,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
+import { MatSort, MatSortable } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { orderBy } from 'lodash';
 import { Subscription } from 'rxjs';
@@ -30,7 +31,8 @@ export class UserTableComponent implements OnChanges, AfterViewInit, OnDestroy {
   dataSource = new MatTableDataSource<UserTableViewModel>();
   displayedColumns: string[];
 
-  @ViewChild(MatPaginator) protected paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   @Input('knnl-data') data: UserTableViewModel[];
   @Output('knnl-click') click = new EventEmitter<UserTableViewModel>();
 
@@ -51,6 +53,9 @@ export class UserTableComponent implements OnChanges, AfterViewInit, OnDestroy {
         tap(isSmall => this.changeDisplayColumns(isSmall))
       ).subscribe()
     );
+
+    // Set sorting logic
+    this.dataSource.sortingDataAccessor = this.compare;
   }
 
   ngOnChanges() {
@@ -65,11 +70,24 @@ export class UserTableComponent implements OnChanges, AfterViewInit, OnDestroy {
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
     }
+    this.dataSource.sort = this.sort;
+
+    // Initial sorting property
+    this.sort.sort(<MatSortable>{ id: 'firstname', start: 'asc' });
   }
 
   /** Unsubscribes all subscriptions to avoid memory leaks */
   ngOnDestroy() {
     this._subscriptions.forEach(s => s.unsubscribe());
+  }
+
+  private compare(data: UserTableViewModel) {
+    switch (this.sort.active) {
+      default:
+      case 'firstname': return data.firstname.toLowerCase();
+      case 'lastname': return data.lastname.toLowerCase();
+      case 'email': return data.email.toLocaleLowerCase();
+    }
   }
 
   /** Changes visible columns depending on the screen size */
