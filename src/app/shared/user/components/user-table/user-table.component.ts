@@ -87,6 +87,7 @@ export class UserTableComponent implements OnChanges, AfterViewInit, OnDestroy {
       case 'firstname': return data.firstname.toLowerCase();
       case 'lastname': return data.lastname.toLowerCase();
       case 'email': return data.email.toLocaleLowerCase();
+      case 'roles': return data.roles ? data.roles.length : 0;
     }
   }
 

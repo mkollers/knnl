@@ -16,7 +16,7 @@
     </ng-container>
 
     <ng-container matColumnDef="roles">
-      <th mat-header-cell *matHeaderCellDef>Rollen</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Rollen</th>
       <td mat-cell *matCellDef="let data">
         <mat-chip-list selectable="false">
           <mat-chip color="primary" color="primary" selected="true" *ngFor="let role of data.roles">{{ role }}</mat-chip>
