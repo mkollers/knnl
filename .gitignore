@@ -3,6 +3,7 @@
 # firebase
 /functions/node_modules
 /functions/lib
+/functions/private-key.json
 
 # compiled output
 /dist
