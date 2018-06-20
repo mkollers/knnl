@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { skip, tap } from 'rxjs/operators';
 
 import { Role } from '../../../shared/data-access/models/role';
 import { RoleService } from '../../../shared/data-access/services/role.service';
@@ -18,8 +19,9 @@ import { EditRoleDialogComponent } from '../../../shared/role/dialogs/edit-role-
   styleUrls: ['./role-list-page.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RoleListPageComponent {
-  roles$: Observable<Role[]>;
+export class RoleListPageComponent implements OnDestroy {
+  private _subscriptions: Subscription[] = [];
+  roles$ = new BehaviorSubject<Role[]>(null);
 
   constructor(
     private _dialog: MatDialog,
@@ -33,7 +35,20 @@ export class RoleListPageComponent {
     toolbar.title = 'Rollen und Berechtigungen';
     toolbar.navigateBackUri = '';
 
-    this.roles$ = this._roleService.getAll();
+    this.roles$.pipe(tap(console.log));
+    this.roles$.next(this._route.snapshot.data.roles);
+
+    // this._changeDetectorRef.markForCheck();
+    this._subscriptions.push(
+      this._roleService.getAll().pipe(
+        skip(1),
+        tap(roles => this.roles$.next(roles))
+      ).subscribe()
+    );
+  }
+
+  ngOnDestroy() {
+    this._subscriptions.forEach(s => s.unsubscribe());
   }
 
   async create() {

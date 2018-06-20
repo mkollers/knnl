@@ -10,6 +10,7 @@ import { LayoutModule } from '../../../shared/layout/layout.module';
 import { RoleModule } from '../../../shared/role/role.module';
 import { RoleListPageRoutingModule } from './role-list-page-routing.module';
 import { RoleListPageComponent } from './role-list-page.component';
+import { RolesResolver } from './roles-resolver';
 
 @NgModule({
   imports: [
@@ -29,6 +30,8 @@ import { RoleListPageComponent } from './role-list-page.component';
   ],
   declarations: [
     RoleListPageComponent
+  ], providers: [
+    RolesResolver
   ]
 })
 export class RoleListPageModule { }
