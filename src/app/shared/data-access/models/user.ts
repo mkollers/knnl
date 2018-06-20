@@ -6,6 +6,7 @@ export class User {
     email: string;
     dob: string;
     favoriteTeams: string;
+    interests: string;
     firstname: string;
     lastname: string;
     mobile: string;

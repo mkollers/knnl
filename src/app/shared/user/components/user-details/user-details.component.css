@@ -1,0 +1,28 @@
+:host {
+    display: block;
+}
+
+dl {
+    line-height: 20px;
+    font-size: 14px;
+}
+
+dd {
+    float: left;
+    margin-bottom: 13px;
+}
+
+dt {
+    font-weight: 500;
+    margin-bottom: 13px;
+    float: left;
+    width: 90px;
+    clear: left;
+    text-transform: uppercase;
+}
+
+dl:after {
+    content: "";
+    display: table;
+    clear: both;
+}

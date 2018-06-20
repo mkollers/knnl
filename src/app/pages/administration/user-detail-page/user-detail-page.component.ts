@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -11,7 +11,8 @@ import { ToolbarService } from '../../../shared/layout/services/toolbar.service'
 @Component({
   selector: 'knnl-user-detail-page',
   templateUrl: './user-detail-page.component.html',
-  styleUrls: ['./user-detail-page.component.css']
+  styleUrls: ['./user-detail-page.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserDetailPageComponent {
   user$: Observable<User>;

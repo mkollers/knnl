@@ -1,0 +1,19 @@
+<mat-card *ngIf="user">
+  <mat-card-content>
+    <mat-card-title>{{ user.firstname }} {{ user.lastname }}</mat-card-title>
+    <dl>
+      <dt>Erstellt am</dt>
+      <dd>{{ user.created | date: 'short' }} Uhr</dd>
+      <dt>E-Mail</dt>
+      <dd>{{ user.email }}</dd>
+      <dt>Geburtstag</dt>
+      <dd>{{ user.dob | date: 'mediumDate' || '- - -' }}</dd>
+      <dt>Lieblingsverein</dt>
+      <dd>{{ user.favoriteTeams || '- - -' }}</dd>
+      <dt>Hobbies</dt>
+      <dd>{{ user.interests || '- - -' }}</dd>
+      <dt>Handynummer</dt>
+      <dd>{{ user.mobile || '- - -' }}</dd>
+    </dl>
+  </mat-card-content>
+</mat-card>
