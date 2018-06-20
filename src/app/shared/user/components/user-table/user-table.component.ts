@@ -10,6 +10,7 @@ import {
   OnDestroy,
   Output,
   ViewChild,
+  OnInit,
 } from '@angular/core';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSort, MatSortable } from '@angular/material/sort';
@@ -26,7 +27,7 @@ import { UserTableViewModel } from './user-table.view-model';
   styleUrls: ['./user-table.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UserTableComponent implements OnChanges, AfterViewInit, OnDestroy {
+export class UserTableComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   private _subscriptions: Subscription[] = [];
   dataSource = new MatTableDataSource<UserTableViewModel>();
   displayedColumns: string[];
@@ -58,6 +59,13 @@ export class UserTableComponent implements OnChanges, AfterViewInit, OnDestroy {
     this.dataSource.sortingDataAccessor = this.compare;
   }
 
+  ngOnInit() {
+    this.dataSource.sort = this.sort;
+
+    // Initial sorting property
+    this.sort.sort(<MatSortable>{ id: 'firstname', start: 'asc' });
+  }
+
   ngOnChanges() {
     if (this.data) {
       const data = orderBy(this.data, u => u.email);
@@ -70,10 +78,6 @@ export class UserTableComponent implements OnChanges, AfterViewInit, OnDestroy {
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
     }
-    this.dataSource.sort = this.sort;
-
-    // Initial sorting property
-    this.sort.sort(<MatSortable>{ id: 'firstname', start: 'asc' });
   }
 
   /** Unsubscribes all subscriptions to avoid memory leaks */
@@ -88,15 +92,16 @@ export class UserTableComponent implements OnChanges, AfterViewInit, OnDestroy {
       case 'lastname': return data.lastname.toLowerCase();
       case 'email': return data.email.toLocaleLowerCase();
       case 'roles': return data.roles ? data.roles.length : 0;
+      case 'created': return data.created;
     }
   }
 
   /** Changes visible columns depending on the screen size */
   private changeDisplayColumns(isSmall: boolean) {
     if (isSmall) {
-      this.displayedColumns = ['firstname', 'lastname'];
+      this.displayedColumns = ['firstname', 'lastname', 'created'];
     } else {
-      this.displayedColumns = ['email', 'firstname', 'lastname', 'roles'];
+      this.displayedColumns = ['email', 'firstname', 'lastname', 'created', 'roles'];
     }
     this._changeDetectorRef.markForCheck();
   }

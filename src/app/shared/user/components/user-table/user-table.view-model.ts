@@ -5,6 +5,7 @@ import { User } from '../../../data-access/models/user';
 
 export class UserTableViewModel {
     uid: string;
+    created: string;
     firstname: string;
     lastname: string;
     email: string;
@@ -12,6 +13,7 @@ export class UserTableViewModel {
 
     constructor(roles: Dictionary<Role>, user: User) {
         this.uid = user.uid;
+        this.created = user.created;
         this.email = user.email;
         this.firstname = user.firstname;
         this.lastname = user.lastname;

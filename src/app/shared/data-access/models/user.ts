@@ -2,8 +2,9 @@ import { AngularFireAction, DatabaseSnapshot } from 'angularfire2/database';
 
 export class User {
     uid?: string;
+    created?: string;
     email: string;
-    dob: number;
+    dob: string;
     favoriteTeams: string;
     firstname: string;
     lastname: string;

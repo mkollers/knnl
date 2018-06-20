@@ -1,5 +1,5 @@
 <section fxLayout="column">
-  <table mat-table *ngIf="dataSource?.data" [dataSource]="dataSource" matSort matSortDisableClear>
+  <table mat-table [dataSource]="dataSource" matSort matSortDisableClear>
 
     <ng-container matColumnDef="firstname">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Vorname</th>
@@ -12,6 +12,13 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Nachname</th>
       <td mat-cell *matCellDef="let data">
         <p mat-line>{{ data.lastname }}</p>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="created">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Regstriert am</th>
+      <td mat-cell *matCellDef="let data">
+        <p mat-line>{{ data.created | date:'short' }}</p>
       </td>
     </ng-container>
 

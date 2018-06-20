@@ -1,6 +1,9 @@
 import { OverlayModule } from '@angular/cdk/overlay';
+import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { ErrorHandler, NgModule } from '@angular/core';
+import localeDe from '@angular/common/locales/de';
+import localeDeExtra from '@angular/common/locales/extra/de';
+import { ErrorHandler, LOCALE_ID, NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,6 +17,8 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './shared/auth/auth.module';
 import { DataAccessModule } from './shared/data-access/data-access.module';
 import { LayoutModule } from './shared/layout/layout.module';
+
+registerLocaleData(localeDe, localeDeExtra);
 
 Raven
   .config('https://d0d205afba434a84969b0c6f6741238f@sentry.io/1227633')
@@ -52,7 +57,8 @@ export class RavenErrorHandler implements ErrorHandler {
     LayoutModule
   ],
   providers: [
-    { provide: ErrorHandler, useClass: RavenErrorHandler }
+    { provide: ErrorHandler, useClass: RavenErrorHandler },
+    { provide: LOCALE_ID, useValue: 'de-DE' }
   ],
   bootstrap: [AppComponent]
 })
