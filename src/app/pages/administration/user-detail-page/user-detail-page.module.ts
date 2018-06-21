@@ -4,6 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { DataAccessModule } from '../../../shared/data-access/data-access.module';
 import { LayoutModule } from '../../../shared/layout/layout.module';
+import { NotificationModule } from '../../../shared/notification/notification.module';
 import { UserModule } from '../../../shared/user/user.module';
 import { UserDetailPageRoutingModule } from './user-detail-page-routing.module';
 import { UserDetailPageComponent } from './user-detail-page.component';
@@ -17,6 +18,7 @@ import { UserDetailPageComponent } from './user-detail-page.component';
     // Custom
     DataAccessModule,
     LayoutModule,
+    NotificationModule,
     UserModule
   ],
   declarations: [UserDetailPageComponent]

@@ -15,8 +15,6 @@
       <dt>Handynummer</dt>
       <dd>{{ user.mobile || '- - -' }}</dd>
     </dl>
-    <mat-chip-list>
-      <mat-chip *ngFor="let role of roles" [selected]="selectedRoles[role.$key]">{{ role.name }}</mat-chip>
-    </mat-chip-list>
+    <mat-checkbox *ngFor="let role of roles" [checked]="user.roles && user.roles[role.$key]" (change)="onRoleCheck(role, $event.checked)">{{ role.name }}</mat-checkbox>
   </mat-card-content>
 </mat-card>

@@ -1,3 +1,6 @@
 <section fxLayoutAlign="start start">
-    <knnl-user-details fxFlex fxFlex.gt-md="50%" fxFlex.xl="40%" [knnl-roles]="roles$ | async" [knnl-user]="user$ | async"></knnl-user-details>
+    <ng-container *ngIf="user$ | async as user">
+        <knnl-user-details fxFlex fxFlex.gt-md="50%" fxFlex.xl="40%" [knnl-roles]="roles$ | async" [knnl-user]="user" (knnl-assign-role)="assignRole($event, user)"
+            (knnl-unassign-role)="unassignRole($event, user)"></knnl-user-details>
+    </ng-container>
 </section>

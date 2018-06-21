@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
-import { chain, Dictionary } from 'lodash';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Role } from '../../../data-access/models/role';
 import { User } from '../../../data-access/models/user';
@@ -10,16 +9,19 @@ import { User } from '../../../data-access/models/user';
   styleUrls: ['./user-details.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UserDetailsComponent implements OnChanges {
+export class UserDetailsComponent {
   @Input('knnl-user') user: User;
   @Input('knnl-roles') roles: Role[];
-  protected selectedRoles: Dictionary<boolean>;
+  @Output('knnl-assign-role') assignRole = new EventEmitter<Role>();
+  @Output('knnl-unassign-role') unassignRole = new EventEmitter<Role>();
 
   constructor() { }
 
-  ngOnChanges() {
-    if (this.roles && this.user) {
-      this.selectedRoles = chain(this.user.roles).keyBy().mapValues(x => true).value();
+  protected onRoleCheck(role: Role, checked: boolean) {
+    if (checked) {
+      this.assignRole.emit(role);
+    } else {
+      this.unassignRole.emit(role);
     }
   }
 }

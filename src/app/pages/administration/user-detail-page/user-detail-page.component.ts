@@ -9,6 +9,7 @@ import { User } from '../../../shared/data-access/models/user';
 import { RoleService } from '../../../shared/data-access/services/role.service';
 import { UserService } from '../../../shared/data-access/services/user.service';
 import { ToolbarService } from '../../../shared/layout/services/toolbar.service';
+import { NotificationService } from '../../../shared/notification/services/notification.service';
 
 @Component({
   selector: 'knnl-user-detail-page',
@@ -21,6 +22,7 @@ export class UserDetailPageComponent {
   roles$: Observable<Role[]>;
 
   constructor(
+    private _notificationService: NotificationService,
     private _userService: UserService,
     roleService: RoleService,
     route: ActivatedRoute,
@@ -43,5 +45,21 @@ export class UserDetailPageComponent {
 
     const urlTree = router.createUrlTree(['../'], { relativeTo: route.parent });
     toolbar.navigateBackUri = urlTree.toString();
+  }
+
+  protected async assignRole(role: Role, user: User) {
+    try {
+      await this._userService.assignRole(user.uid, role.$key);
+    } catch (err) {
+      this._notificationService.fatal(err);
+    }
+  }
+
+  protected async unassignRole(role: Role, user: User) {
+    try {
+      await this._userService.unassignRole(user.uid, role.$key);
+    } catch (err) {
+      this._notificationService.fatal(err);
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { AngularFireAction, DatabaseSnapshot } from 'angularfire2/database';
+import { Dictionary } from 'lodash';
 
 export class User {
     uid?: string;
@@ -18,7 +19,7 @@ export class User {
         whatsApp: boolean;
         whatsAppGroup: boolean;
     };
-    roles: string[];
+    roles: Dictionary<boolean>;
 
     static fromAction(action: AngularFireAction<DatabaseSnapshot<any>>): User {
         const val = action.payload.val();

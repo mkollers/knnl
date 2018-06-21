@@ -27,7 +27,6 @@ export class UserService {
   async setPersonalData(uid: string, value: PersonalData) {
     const data: any = { ...value };
     data.dob = value.dob.toISOString();
-    console.log(data);
 
     await this._db.object(`users/${uid}`).update(data);
   }
@@ -36,5 +35,13 @@ export class UserService {
     await this._db.object(`users/${uid}/dataProtection`).update({
       [key]: value
     });
+  }
+
+  async assignRole(uid: string, roleKey: string) {
+    await this._db.object(`users/${uid}/roles/${roleKey}`).set(true);
+  }
+
+  async unassignRole(uid: string, roleKey: string) {
+    await this._db.object(`users/${uid}/roles/${roleKey}`).remove();
   }
 }

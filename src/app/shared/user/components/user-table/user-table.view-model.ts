@@ -1,7 +1,8 @@
-import { Dictionary } from 'lodash';
+import { Dictionary, chain } from 'lodash';
 
 import { Role } from '../../../data-access/models/role';
 import { User } from '../../../data-access/models/user';
+import { toArray } from 'rxjs/operators';
 
 export class UserTableViewModel {
     uid: string;
@@ -18,7 +19,11 @@ export class UserTableViewModel {
         this.firstname = user.firstname;
         this.lastname = user.lastname;
         if (user.roles) {
-            this.roles = user.roles.map(key => roles[key].name);
+            this.roles = chain(user.roles)
+            .keys()
+            .filter(key => !!roles[key])
+            .map(key => roles[key].name)
+            .value();
         }
     }
 }

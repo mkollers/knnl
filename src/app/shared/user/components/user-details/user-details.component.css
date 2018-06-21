@@ -26,3 +26,7 @@ dl:after {
     display: table;
     clear: both;
 }
+
+.mat-checkbox {
+    margin-right: 8px;
+}
