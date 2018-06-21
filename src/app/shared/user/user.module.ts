@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
@@ -21,10 +21,10 @@ import { UserTableComponent } from './components/user-table/user-table.component
     // Material
     MatButtonModule,
     MatCardModule,
-    MatCheckboxModule,
     MatChipsModule,
     MatIconModule,
     MatPaginatorModule,
+    MatSlideToggleModule,
     MatSortModule,
     MatTableModule
   ],

@@ -27,6 +27,6 @@ dl:after {
     clear: both;
 }
 
-.mat-checkbox {
-    margin-right: 8px;
+.mat-slide-toggle {
+    margin-right: 16px;
 }

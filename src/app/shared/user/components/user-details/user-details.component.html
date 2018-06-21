@@ -15,6 +15,6 @@
       <dt>Handynummer</dt>
       <dd>{{ user.mobile || '- - -' }}</dd>
     </dl>
-    <mat-checkbox *ngFor="let role of roles" [checked]="user.roles && user.roles[role.$key]" (change)="onRoleCheck(role, $event.checked)">{{ role.name }}</mat-checkbox>
+    <mat-slide-toggle *ngFor="let role of roles" [checked]="user.roles && user.roles[role.$key]" (change)="onRoleCheck(role, $event.checked)">{{ role.name }}</mat-slide-toggle>
   </mat-card-content>
 </mat-card>
