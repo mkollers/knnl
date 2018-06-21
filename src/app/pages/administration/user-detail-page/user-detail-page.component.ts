@@ -37,11 +37,14 @@ export class UserDetailPageComponent {
       skip(1)
     );
 
+    const roles$ = route.data.pipe(map(data => data.roles as Role[]));
+    const hotRoles$ = this.roles$ = roleService.getAll().pipe(skip(1));
+
     this.user$ = merge(user$, hotUser$).pipe(
       tap(user => toolbar.title = `${user.firstname} ${user.lastname}`),
       tap(user => title.setTitle(`${user.firstname} ${user.lastname}`))
     );
-    this.roles$ = roleService.getAll();
+    this.roles$ = merge(roles$, hotRoles$);
 
     const urlTree = router.createUrlTree(['../'], { relativeTo: route.parent });
     toolbar.navigateBackUri = urlTree.toString();
