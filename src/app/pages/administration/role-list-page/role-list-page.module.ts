@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { DataAccessModule } from '../../../shared/data-access/data-access.module';
 import { LayoutModule } from '../../../shared/layout/layout.module';
 import { RoleModule } from '../../../shared/role/role.module';
+import { RoleResolver } from '../role-detail-page/role-resolver';
 import { RoleListPageRoutingModule } from './role-list-page-routing.module';
 import { RoleListPageComponent } from './role-list-page.component';
 import { RolesResolver } from './roles-resolver';
@@ -31,6 +32,7 @@ import { RolesResolver } from './roles-resolver';
   declarations: [
     RoleListPageComponent
   ], providers: [
+    RoleResolver,
     RolesResolver
   ]
 })

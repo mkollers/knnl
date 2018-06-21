@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { switchMap, tap, map } from 'rxjs/operators';
+import { merge, Observable } from 'rxjs';
+import { map, skip, switchMap, tap } from 'rxjs/operators';
 
 import { Role } from '../../../shared/data-access/models/role';
 import { RoleService } from '../../../shared/data-access/services/role.service';
@@ -25,9 +25,14 @@ export class RoleDetailPageComponent {
     title: Title,
     toolbar: ToolbarService
   ) {
-    const id$ = route.params.pipe(map(params => params['id']));
-    this.role$ = id$.pipe(
-      switchMap(id => this._roleService.getById(id)),
+    const role$ = route.data.pipe(map(data => data.role as Role));
+    const key$ = route.params.pipe(map(params => params['roleKey']));
+    const hotRole$ = key$.pipe(
+      switchMap(id => this._roleService.getByKey(id)),
+      skip(1) // first values is emmitted by resolver
+    );
+
+    this.role$ = merge(role$, hotRole$).pipe(
       tap(role => toolbar.title = role.name),
       tap(role => title.setTitle(role.name))
     );

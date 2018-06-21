@@ -31,7 +31,7 @@ export class RoleService {
     );
   }
 
-  getById(key: string) {
+  getByKey(key: string) {
     return this._db.object<Role>(`roles/${key}`).snapshotChanges().pipe(
       map<AngularFireAction<DatabaseSnapshot<Role>>, Role>(action => Role.fromAction(action))
     );

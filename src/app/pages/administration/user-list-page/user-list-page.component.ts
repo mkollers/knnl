@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { keyBy } from 'lodash';
-import { combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { combineLatest, merge, Observable } from 'rxjs';
+import { map, skip } from 'rxjs/operators';
 
+import { User } from '../../../shared/data-access/models/user';
 import { RoleService } from '../../../shared/data-access/services/role.service';
 import { UserService } from '../../../shared/data-access/services/user.service';
 import { ToolbarService } from '../../../shared/layout/services/toolbar.service';
@@ -30,8 +31,11 @@ export class UserListPageComponent {
     toolbar.title = 'Benutzerverwaltung';
     toolbar.navigateBackUri = null;
 
+    const resolvedUsers$ = _route.data.pipe(map(data => data.users as User[]));
+    const hotUsers$ = userService.getAll().pipe(skip(1));
     const roles$ = roleService.getAll().pipe(map(roles => keyBy(roles, r => r.$key)));
-    const users$ = userService.getAll();
+
+    const users$ = merge(resolvedUsers$, hotUsers$);
     this.data$ = combineLatest(roles$, users$).pipe(
       map(([roles, users]) => users.map(user => new UserTableViewModel(roles, user)))
     );
