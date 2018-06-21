@@ -4,7 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { merge, Observable } from 'rxjs';
 import { map, skip, switchMap, tap } from 'rxjs/operators';
 
+import { Role } from '../../../shared/data-access/models/role';
 import { User } from '../../../shared/data-access/models/user';
+import { RoleService } from '../../../shared/data-access/services/role.service';
 import { UserService } from '../../../shared/data-access/services/user.service';
 import { ToolbarService } from '../../../shared/layout/services/toolbar.service';
 
@@ -16,9 +18,11 @@ import { ToolbarService } from '../../../shared/layout/services/toolbar.service'
 })
 export class UserDetailPageComponent {
   user$: Observable<User>;
+  roles$: Observable<Role[]>;
 
   constructor(
     private _userService: UserService,
+    roleService: RoleService,
     route: ActivatedRoute,
     router: Router,
     title: Title,
@@ -35,6 +39,7 @@ export class UserDetailPageComponent {
       tap(user => toolbar.title = `${user.firstname} ${user.lastname}`),
       tap(user => title.setTitle(`${user.firstname} ${user.lastname}`))
     );
+    this.roles$ = roleService.getAll();
 
     const urlTree = router.createUrlTree(['../'], { relativeTo: route.parent });
     toolbar.navigateBackUri = urlTree.toString();

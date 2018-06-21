@@ -15,5 +15,8 @@
       <dt>Handynummer</dt>
       <dd>{{ user.mobile || '- - -' }}</dd>
     </dl>
+    <mat-chip-list>
+      <mat-chip *ngFor="let role of roles" [selected]="selectedRoles[role.$key]">{{ role.name }}</mat-chip>
+    </mat-chip-list>
   </mat-card-content>
 </mat-card>
