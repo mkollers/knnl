@@ -4,6 +4,8 @@
     <knnl-role-card fxFlex [knnl-role]="role" (knnl-delete)="delete($event)" (knnl-edit)="edit($event)"></knnl-role-card>
   </a>
 </section>
-<button color="primary" mat-fab (click)="create()">
-  <mat-icon svgIcon="material:outline-add"></mat-icon>
-</button>
+<knnl-if-allowed knnl-permission="roles_create">
+  <button color="primary" mat-fab (click)="create()">
+    <mat-icon svgIcon="material:outline-add"></mat-icon>
+  </button>
+</knnl-if-allowed>

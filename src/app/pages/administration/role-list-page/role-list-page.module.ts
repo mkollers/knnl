@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
+import { AuthModule } from '../../../shared/auth/auth.module';
 import { DataAccessModule } from '../../../shared/data-access/data-access.module';
 import { LayoutModule } from '../../../shared/layout/layout.module';
 import { RoleModule } from '../../../shared/role/role.module';
@@ -25,6 +26,7 @@ import { RolesResolver } from './roles-resolver';
     MatIconModule,
 
     // Custom
+    AuthModule,
     DataAccessModule,
     LayoutModule,
     RoleModule

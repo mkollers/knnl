@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
+import { IfAllowedComponent } from './components/if-allowed/if-allowed.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -13,6 +15,10 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     AngularFireAuthModule,
     AngularFireDatabaseModule
   ],
-  declarations: []
+  declarations: [
+    IfAllowedComponent
+  ], exports: [
+    IfAllowedComponent
+  ]
 })
 export class AuthModule { }

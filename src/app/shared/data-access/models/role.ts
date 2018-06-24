@@ -7,8 +7,11 @@ export class Role {
     description: string;
     permissions: Dictionary<boolean>;
 
-    static fromAction(action: AngularFireAction<DatabaseSnapshot<any>>): Role {
+    static fromAction(action: AngularFireAction<DatabaseSnapshot<any>>): Role {        
         const val = action.payload.val();
+        if (!val) {
+            return null;
+        }
         return {
             $key: action.key,
             name: val.name,

@@ -17,6 +17,10 @@ export class PermissionPipe implements PipeTransform {
         return 'Rolle bearbeiten';
       case 'roles_delete':
         return 'Rolle löschen';
+      case 'users_view':
+        return 'Benutzer sehen';
+      case 'users_set_roles':
+        return 'Benutzerrollen setzen';
       case 'news_view':
         return 'News lesen';
       default:

@@ -3,26 +3,32 @@
     <div id="logo"></div>
     <nav>
       <ul>
-        <li>
-          <a mat-button routerLink="/news" routerLinkActive="active">
-            <mat-icon svgIcon="material:outline-whatshot"></mat-icon>&nbsp;News
-          </a>
-        </li>
+        <knnl-if-allowed knnl-permission="news_view">
+          <li *ngIf="viewNews$ | async">
+            <a mat-button routerLink="/news" routerLinkActive="active">
+              <mat-icon svgIcon="material:outline-whatshot"></mat-icon>&nbsp;News
+            </a>
+          </li>
+        </knnl-if-allowed>
       </ul>
     </nav>
-    <nav>
+    <nav *ngIf="viewAdministration$ | async">
       <h3>Administration</h3>
       <ul>
-        <li>
-          <a mat-button routerLink="/administration/users" routerLinkActive="active">
-            <mat-icon svgIcon="material:outline-supervised_user_circle"></mat-icon>&nbsp;Benutzerverwaltung
-          </a>
-        </li>
-        <li>
-          <a mat-button routerLink="/administration/permissions" routerLinkActive="active">
-            <mat-icon svgIcon="material:outline-security"></mat-icon>&nbsp;Rollen & Berechtigungen
-          </a>
-        </li>
+        <knnl-if-allowed knnl-permission="users_view">
+          <li>
+            <a mat-button routerLink="/administration/users" routerLinkActive="active">
+              <mat-icon svgIcon="material:outline-supervised_user_circle"></mat-icon>&nbsp;Benutzerverwaltung
+            </a>
+          </li>
+        </knnl-if-allowed>
+        <knnl-if-allowed knnl-permission="roles_view">
+          <li *ngIf="viewRoles$ | async">
+            <a mat-button routerLink="/administration/permissions" routerLinkActive="active">
+              <mat-icon svgIcon="material:outline-security"></mat-icon>&nbsp;Rollen & Berechtigungen
+            </a>
+          </li>
+        </knnl-if-allowed>
       </ul>
     </nav>
     <nav *ngIf="user">
