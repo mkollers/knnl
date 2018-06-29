@@ -6,18 +6,22 @@ import { RoleRepository } from '../repositories/role-repository';
 import { UserRepository } from '../repositories/user-repository';
 import { MetadataRepository } from '../repositories/metadata-repository';
 
-export const SetCustomClaimsOnRoleUpdate = functions.database
-    .ref('/roles/{roleId}/permissions')
+export const SetCustomClaimsOnRoleWrite = functions.database
+    .ref('/roles/{roleKey}/permissions')
     .onWrite(async (snapshot, context) => {
         const users = await UserRepository.findAll();
         const roles = await RoleRepository.findAll();
 
         // Only user who has the role assigned
-        const roleId = context.params.roleId;
-        const filteredUsers = _.filter(users, u => u.roles[roleId]);
+        const roleKey = context.params.roleKey;
 
-        for (const uid in filteredUsers) {
-            const user = filteredUsers[uid];
+        for (const uid in users) {
+            const user = users[uid];
+
+            // skip users who does not contains the role
+            if (!user.roles || !user.roles[roleKey]) {
+                continue;
+            }
 
             const permissions = _.chain(user.roles)
                 .keys() // get role keys of object ({ role_key: boolean })
@@ -33,7 +37,7 @@ export const SetCustomClaimsOnRoleUpdate = functions.database
 
             await admin.auth().setCustomUserClaims(uid, permissions);
             await MetadataRepository.enforceTokenRefresh(uid);
-            
+
             console.log(`Set permissions for ${user.firstname} ${user.lastname}:`, _.keys(permissions));
         }
     });
