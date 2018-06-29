@@ -1,11 +1,19 @@
 {
   "rules": {
-    ".read": true,
-    ".write": true,
     "users": {
       "$uid": {
-        ".read": "auth.uid == $uid",
-        ".write": "!data.exists() || auth.uid == $uid"
+        ".read": "auth.uid === $uid || auth.token.users_view === true",
+        ".write": "!data.exists() || auth.uid === $uid || auth.token.users_set_roles === true"
+      }
+    },
+    "roles": {
+      ".read": "auth.token.roles_view === true",
+      ".write": "(!data.exists() && auth.token.roles_create === true) || (data.exists() && auth.token.roles_edit === true) || (!newData.exists() && auth.token.roles_create === true)"
+    },
+    "metadata": {
+      "$uid": {
+        ".read": "auth.uid === $uid",
+        ".write": false
       }
     }
   }
