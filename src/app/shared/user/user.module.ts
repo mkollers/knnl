@@ -10,6 +10,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
+import { AuthModule } from '../auth/auth.module';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { UserTableComponent } from './components/user-table/user-table.component';
 
@@ -26,7 +27,10 @@ import { UserTableComponent } from './components/user-table/user-table.component
     MatPaginatorModule,
     MatSlideToggleModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+
+    // Custom
+    AuthModule
   ],
   declarations: [
     UserTableComponent,

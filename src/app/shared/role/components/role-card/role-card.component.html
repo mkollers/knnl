@@ -1,9 +1,11 @@
 <mat-card fxFlex>
   <mat-card-title>
     <span fxFlex>{{ role.name }}</span>
-    <button knnl-no-routing mat-icon-button [matMenuTriggerFor]="menu" *ngIf="edit.observers.length || delete.observers.length">
-      <mat-icon svgIcon="material:outline-more_vert"></mat-icon>
-    </button>
+    <knnl-if-allowed [knnl-permission]="['roles_edit', 'roles_delete']" knnl-operator="OR">
+      <button knnl-no-routing mat-icon-button [matMenuTriggerFor]="menu" *ngIf="edit.observers.length || delete.observers.length">
+        <mat-icon svgIcon="material:outline-more_vert"></mat-icon>
+      </button>
+    </knnl-if-allowed>
   </mat-card-title>
   <mat-card-subtitle>{{ role.description }}</mat-card-subtitle>
   <mat-card-content>
@@ -14,10 +16,14 @@
 </mat-card>
 
 <mat-menu #menu>
-  <button mat-menu-item (click)="edit.emit(role)" *ngIf="edit.observers.length">
-    <mat-icon svgIcon="material:outline-edit"></mat-icon>Bearbeiten
-  </button>
-  <button mat-menu-item (click)="delete.emit(role)" *ngIf="delete.observers.length">
-    <mat-icon svgIcon="material:outline-delete"></mat-icon>Löschen
-  </button>
+  <knnl-if-allowed knnl-permission="roles_edit">
+    <button mat-menu-item (click)="edit.emit(role)" *ngIf="edit.observers.length">
+      <mat-icon svgIcon="material:outline-edit"></mat-icon>Bearbeiten
+    </button>
+  </knnl-if-allowed>
+  <knnl-if-allowed knnl-permission="roles_delete">
+    <button mat-menu-item (click)="delete.emit(role)" *ngIf="delete.observers.length">
+      <mat-icon svgIcon="material:outline-delete"></mat-icon>Löschen
+    </button>
+  </knnl-if-allowed>
 </mat-menu>

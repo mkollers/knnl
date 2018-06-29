@@ -4,11 +4,12 @@
   <mat-card-content>
     <h3>News</h3>
     <section fxLayout="row wrap" fxLayoutGap="8px">
-      <mat-slide-toggle *ngFor="let p of permissions.news" [id]="p" [checked]="role.permissions[p]" (change)="change($event)">{{ p | permission }}</mat-slide-toggle>
+      <mat-slide-toggle [disabled]="!((claims$ | async)?.roles_edit)" *ngFor="let p of permissions.news" [id]="p" [checked]="role.permissions[p]" (change)="change($event)">{{ p | permission }}</mat-slide-toggle>
     </section>
     <h3>Administration</h3>
     <section fxLayout="row wrap" fxLayoutGap="8px">
-      <mat-slide-toggle *ngFor="let p of permissions.administration" [id]="p" [checked]="role.permissions[p]" (change)="change($event)">{{ p | permission }}</mat-slide-toggle>
+      <mat-slide-toggle [disabled]="!((claims$ | async)?.roles_edit)" *ngFor="let p of permissions.administration" [id]="p"
+        [checked]="role.permissions[p]" (change)="change($event)">{{ p | permission }}</mat-slide-toggle>
     </section>
   </mat-card-content>
 </mat-card>

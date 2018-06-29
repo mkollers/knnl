@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
+import { AuthModule } from '../auth/auth.module';
 import { HelpersModule } from '../helpers/helpers.module';
 import { RoleCardComponent } from './components/role-card/role-card.component';
 import { RoleDetailsComponent } from './components/role-details/role-details.component';
@@ -37,6 +38,7 @@ import { PermissionPipe } from './pipes/permission.pipe';
     MatSlideToggleModule,
 
     // Custom
+    AuthModule,
     HelpersModule
   ],
   declarations: [

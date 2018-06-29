@@ -15,6 +15,9 @@
       <dt>Handynummer</dt>
       <dd>{{ user.mobile || '- - -' }}</dd>
     </dl>
-    <mat-slide-toggle *ngFor="let role of roles" [checked]="user.roles && user.roles[role.$key]" (change)="onRoleCheck(role, $event.checked)">{{ role.name }}</mat-slide-toggle>
+    <ng-container *ngIf="claims$ | async as claims">
+      <mat-slide-toggle [disabled]="!claims?.users_set_roles" *ngFor="let role of roles" [checked]="user.roles && user.roles[role.$key]"
+        (change)="onRoleCheck(role, $event.checked)">{{ role.name }}</mat-slide-toggle>
+    </ng-container>
   </mat-card-content>
 </mat-card>

@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAction, AngularFireDatabase, DatabaseSnapshot } from 'angularfire2/database';
-import * as _ from 'lodash';
-import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Role } from '../models/role';
@@ -30,23 +28,6 @@ export class RoleService {
   getAll() {
     return this._db.list<Role[]>('roles', ref => ref.orderByChild('name')).snapshotChanges().pipe(
       map<AngularFireAction<DatabaseSnapshot<any>>[], Role[]>(actions => actions.map<Role>(action => Role.fromAction(action)))
-    );
-  }
-
-  hasPermission(uid: string, permission: string) {
-    const roleKeys$ = this.getAll().pipe(
-      map(roles => _.filter(roles, r => !!r.permissions)), // role has permissions
-      map(roles => _.filter(roles, r => r.permissions[permission])), // role has requested permissions
-      map(roles => roles.map(r => r.$key)) // map to keys
-    );
-
-    const userRoles$ = this._db.list(`users/${uid}/roles`).snapshotChanges().pipe(
-      map<AngularFireAction<DatabaseSnapshot<any>>[], any>(actions => actions.map(a => a.key)),
-    );
-
-    return combineLatest(roleKeys$, userRoles$).pipe(
-      map(([roles, userRoles]) => _.intersectionWith(userRoles, roles)),
-      map(matches => !!matches.length)
     );
   }
 
