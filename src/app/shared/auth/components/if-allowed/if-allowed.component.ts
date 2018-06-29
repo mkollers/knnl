@@ -15,7 +15,7 @@ export class IfAllowedComponent implements OnChanges {
   @Input('knnl-permission') permission: string | string[];
   @Input('knnl-operator') operator: 'OR' | 'AND' = 'AND';
 
-  protected isAllowed$: Observable<boolean>;
+  isAllowed$: Observable<boolean>;
 
   constructor(
     private _authService: AuthService

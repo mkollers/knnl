@@ -16,8 +16,8 @@ import { PermissionChange } from './permission-change';
 export class RoleDetailsComponent {
   @Input('knnl-role') role: Role;
   @Output('knnl-permission-change') permissionChange = new EventEmitter<PermissionChange>();
-  protected claims$: Observable<Dictionary<any>>;
-  protected permissions = {
+  claims$: Observable<Dictionary<any>>;
+  permissions = {
     news: ['news_view'],
     administration: ['administration_view', 'roles_view', 'roles_create', 'roles_edit', 'roles_delete', 'users_view', 'users_set_roles']
   };

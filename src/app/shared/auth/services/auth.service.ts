@@ -5,7 +5,7 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 import { filter, map, switchMap, tap } from 'rxjs/operators';
 
-import { Dictionary } from '../../../../../functions/node_modules/@types/lodash';
+import { Dictionary } from 'lodash';
 
 @Injectable({
   providedIn: 'root'
