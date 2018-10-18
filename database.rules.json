@@ -1,8 +1,9 @@
 {
   "rules": {
     "users": {
+      ".read": "auth.token.users_view === true",
       "$uid": {
-        ".read": "auth.uid === $uid || auth.token.users_view === true",
+        ".read": "auth.uid === $uid",
         ".write": "!data.exists() || auth.uid === $uid || auth.token.users_set_roles === true"
       }
     },

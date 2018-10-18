@@ -28,7 +28,8 @@ input:-webkit-autofill {
 }
 
 /* Button */
-.mat-button {
+.mat-button,
+.mat-stroked-button {
   font-weight: 400;
   text-transform: uppercase;
 }
