@@ -1,6 +1,6 @@
 <form fxLayout="column" fxFlexFill novalidate [formGroup]="loginFg" (ngSubmit)="loginFg.valid && login()">
   <span fxFlex></span>
-  <section class="content" fxFlexAlign.gt-xs="center" fxFlex fxFlex.gt-xs="350px">
+  <section class="content" fxFlexAlign.gt-xs="center" ngStyle.gt-xs="width: 450px">
     <h1>Anmelden</h1>
     <section fxLayout="column">
       <mat-form-field appearance="outline">
@@ -17,7 +17,7 @@
     </section>
     <section fxLayoutAlign="end start" fxLayoutGap="16px">
       <a routerLink="/register" mat-stroked-button>Konto erstellen</a>
-      <button type="submit" mat-stroked-button color="primary" [disabled]="inProgress">Anmelden</button>
+      <button type="submit" mat-flat-button color="primary" [disabled]="inProgress">Anmelden</button>
     </section>
   </section>
   <span fxFlex></span>
