@@ -50,7 +50,7 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>Geburtstag</mat-label>
-              <input disabled [max]="today" matInput [matDatepicker]="picker" formControlName="dob">
+              <input [max]="today" matInput [matDatepicker]="picker" formControlName="dob">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker startView="multi-year" disabled="false" #picker></mat-datepicker>
             </mat-form-field>

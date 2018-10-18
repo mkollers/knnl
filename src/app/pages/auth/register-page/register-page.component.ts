@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
@@ -76,7 +76,7 @@ export class RegisterPageComponent {
     });
 
     this.personalFg = this._fb.group({
-      dob: this._fb.control(''),
+      dob: this._fb.control({ value: '', disabled: true }),
       firstname: this._fb.control('', Validators.required),
       lastname: this._fb.control('', Validators.required),
       favoriteTeams: this._fb.control(''),
