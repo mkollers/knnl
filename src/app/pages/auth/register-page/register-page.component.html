@@ -1,8 +1,8 @@
 <section fxLayout="column" fxFlexFill>
   <span fxFlex></span>
-  <mat-card fxFlexAlign="center" ngStyle.gt-xs="width: 350px;">
-    <mat-card-title>Konto erstellen</mat-card-title>
-    <mat-card-content fxLayout="column">
+  <section fxFlexAlign="center" fxFlex.gt-xs="350px">
+    <h1>Konto erstellen</h1>
+    <section fxLayout="column">
       <mat-vertical-stepper [linear]="true" #stepper>
         <ng-template matStepperIcon="edit">
           <mat-icon svgIcon="material:outline-edit"></mat-icon>
@@ -13,72 +13,88 @@
         <mat-step [stepControl]="accountFg">
           <ng-template matStepLabel>Konto erstellen</ng-template>
           <form fxLayout="column" novalidate [formGroup]="accountFg" (ngSubmit)="stepper.next()">
-            <mat-form-field>
-              <input matInput class="email" type="email" placeholder="E-Mail" formControlName="email" autocomplete="email" required>
-              <mat-error *ngIf="accountFg.controls['email']?.errors?.required || accountFg.controls['email']?.errors?.email">Bitte geben Sie eine gültige E-Mail ein</mat-error>
+            <mat-form-field appearance="outline">
+              <mat-label>E-Mail</mat-label>
+              <input matInput class="email" type="email" formControlName="email" autocomplete="email" required>
+              <mat-error *ngIf="accountFg.controls['email']?.errors?.required || accountFg.controls['email']?.errors?.email">Bitte
+                geben Sie eine gültige E-Mail ein</mat-error>
             </mat-form-field>
-            <mat-form-field formGroupName="passwords">
-              <input matInput class="password" type="password" placeholder="Kennwort" formControlName="password" required>
-              <mat-error *ngIf="accountFg.controls['passwords']['controls'].password?.errors?.required || accountFg.controls['passwords']['controls'].password?.errors?.minlength">Das Kennwort muss mindestens 6 Zeichen lang sein</mat-error>
+            <mat-form-field formGroupName="passwords" appearance="outline">
+              <mat-label>Kennwort</mat-label>
+              <input matInput class="password" type="password" formControlName="password" required>
+              <mat-error *ngIf="accountFg.controls['passwords']['controls'].password?.errors?.required || accountFg.controls['passwords']['controls'].password?.errors?.minlength">Das
+                Kennwort muss mindestens 6 Zeichen lang sein</mat-error>
             </mat-form-field>
-            <mat-form-field formGroupName="passwords">
-              <input class="confirm" matInput type="password" placeholder="Kennwort wiederholen" formControlName="repeat" required>
-              <mat-error *ngIf="accountFg.controls['passwords']['controls'].repeat?.errors?.mismatch">Die Kennwörter sind nicht identisch</mat-error>
+            <mat-form-field formGroupName="passwords" appearance="outline">
+              <mat-label>Kennwort wiederholen</mat-label>
+              <input class="confirm" matInput type="password" formControlName="repeat" required>
+              <mat-error *ngIf="accountFg.controls['passwords']['controls'].repeat?.errors?.mismatch">Die Kennwörter
+                sind nicht identisch</mat-error>
             </mat-form-field>
-            <button class="submit-account" style="margin-top: 8px;" fxFlexAlign="start" color="primary" mat-raised-button type="submit">Weiter</button>
+            <button class="submit-account" style="margin-top: 8px;" fxFlexAlign="start" color="primary" mat-flat-button
+              type="submit">Weiter</button>
           </form>
         </mat-step>
         <mat-step [stepControl]="personalFg">
           <ng-template matStepLabel>Persönliche Informationen</ng-template>
           <form fxLayout="column" novalidate [formGroup]="personalFg" (ngSubmit)="stepper.next()">
-            <mat-form-field>
-              <input class="firstname" matInput type="text" placeholder="Vorname" formControlName="firstname" required>
+            <mat-form-field appearance="outline">
+              <mat-label>Vorname</mat-label>
+              <input class="firstname" matInput type="text" formControlName="firstname" required>
               <mat-error *ngIf="personalFg.controls['firstname']?.errors?.required">Bitte geben Sie einen Vornamen ein</mat-error>
             </mat-form-field>
-            <mat-form-field>
-              <input class="lastname" matInput type="text" placeholder="Nachname" formControlName="lastname" required>
+            <mat-form-field appearance="outline">
+              <mat-label>Nachname</mat-label>
+              <input class="lastname" matInput type="text" formControlName="lastname" required>
               <mat-error *ngIf="personalFg.controls['lastname']?.errors?.required">Bitte geben Sie einen Nachnamen ein</mat-error>
             </mat-form-field>
-            <mat-form-field>
-              <input disabled [max]="today" matInput [matDatepicker]="picker" formControlName="dob" placeholder="Geburtstag">
+            <mat-form-field appearance="outline">
+              <mat-label>Geburtstag</mat-label>
+              <input disabled [max]="today" matInput [matDatepicker]="picker" formControlName="dob">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker startView="multi-year" disabled="false" #picker></mat-datepicker>
             </mat-form-field>
-            <mat-form-field>
-              <input matInput type="text" placeholder="Lieblingsverein" formControlName="favoriteTeams">
+            <mat-form-field appearance="outline">
+              <mat-label>Lieblingsverein</mat-label>
+              <input matInput type="text" formControlName="favoriteTeams">
             </mat-form-field>
-            <mat-form-field>
-              <textarea rows="3" matInput placeholder="Hobbies" formControlName="interests"></textarea>
+            <mat-form-field appearance="outline">
+              <mat-label>Hobbies</mat-label>
+              <textarea rows="3" matInput formControlName="interests"></textarea>
             </mat-form-field>
-            <mat-form-field>
-              <input matInput type="text" placeholder="Handynummer" formControlName="mobile">
+            <mat-form-field appearance="outline">
+              <mat-label>Handynummer</mat-label>
+              <input matInput type="text" formControlName="mobile">
             </mat-form-field>
-            <button class="submit-personal" style="margin-top: 8px;" fxFlexAlign="start" color="primary" mat-raised-button type="submit">Weiter</button>
+            <button class="submit-personal" style="margin-top: 8px;" fxFlexAlign="start" color="primary"
+              mat-flat-button type="submit">Weiter</button>
           </form>
         </mat-step>
         <mat-step [stepControl]="dataProtFg">
           <ng-template matStepLabel>Datenschutzeinstellungen</ng-template>
           <form fxLayout="column" novalidate [formGroup]="dataProtFg" (ngSubmit)="!inProgress && finish()">
-            <p style="margin-top: 0">Um dich über aktuelle Geschehnisse auf dem Laufenden halten zu können, möchten wir dich gerne per E-Mail kontaktieren.
+            <p style="margin-top: 0">Um dich über aktuelle Geschehnisse auf dem Laufenden halten zu können, möchten wir
+              dich gerne per E-Mail kontaktieren.
               <br /> Bei welchen Ereignissen dürfen wir dir E-Mails senden?
             </p>
             <mat-checkbox class="news" formControlName="news">Neuigkeiten</mat-checkbox>
             <mat-checkbox class="new-post" formControlName="newPost">Neue Beiträge im Forum</mat-checkbox>
             <mat-checkbox class="reply" formControlName="reply">Antworten im Forum</mat-checkbox>
             <mat-checkbox class="results" formControlName="results">Neue Ergebnisse bei Kicker</mat-checkbox>
-            <p>Wir haben eine WhatsApp-Gruppe und schreiben unseren Mitgliedern zu aktuellen Anlässen (bspw. Sommerfeier, FunCup)
+            <p>Wir haben eine WhatsApp-Gruppe und schreiben unseren Mitgliedern zu aktuellen Anlässen (bspw.
+              Sommerfeier, FunCup)
               direkt. Bist du damit einverstanden?</p>
             <mat-checkbox class="whats-app" formControlName="whatsApp">Per WhatsApp kontaktieren</mat-checkbox>
             <mat-checkbox class="whats-app-group" formControlName="whatsAppGroup">WhatsApp-Gruppe hinzufügen</mat-checkbox>
-            <button class="submit-data-prot" [disabled]="inProgress" style="margin-top: 8px;" fxFlexAlign="start" color="primary" mat-raised-button
-              type="submit">
+            <button class="submit-data-prot" [disabled]="inProgress" style="margin-top: 8px;" fxFlexAlign="start" color="primary"
+              mat-raised-button type="submit">
               <mat-icon svgIcon="material:outline-done_all"></mat-icon> Registrierung abschließen
             </button>
           </form>
         </mat-step>
       </mat-vertical-stepper>
-    </mat-card-content>
-  </mat-card>
+    </section>
+  </section>
   <span fxFlex></span>
   <knnl-footer></knnl-footer>
 </section>
