@@ -4,13 +4,7 @@
     <h1>Konto erstellen</h1>
     <section fxLayout="column">
       <mat-vertical-stepper [linear]="true" #stepper>
-        <ng-template matStepperIcon="edit">
-          <mat-icon svgIcon="material:outline-edit"></mat-icon>
-        </ng-template>
-        <ng-template matStepperIcon="done">
-          <mat-icon svgIcon="material:outline-done_all"></mat-icon>
-        </ng-template>
-        <mat-step [stepControl]="accountFg">
+        <mat-step [stepControl]="accountFg" [completed]="false">
           <ng-template matStepLabel>Konto erstellen</ng-template>
           <form fxLayout="column" novalidate [formGroup]="accountFg" (ngSubmit)="stepper.next()">
             <mat-form-field appearance="outline">
@@ -35,7 +29,7 @@
               type="submit">Weiter</button>
           </form>
         </mat-step>
-        <mat-step [stepControl]="personalFg">
+        <mat-step [stepControl]="personalFg" [completed]="false">
           <ng-template matStepLabel>Persönliche Informationen</ng-template>
           <form fxLayout="column" novalidate [formGroup]="personalFg" (ngSubmit)="stepper.next()">
             <mat-form-field appearance="outline">
@@ -70,7 +64,7 @@
               mat-flat-button type="submit">Weiter</button>
           </form>
         </mat-step>
-        <mat-step [stepControl]="dataProtFg">
+        <mat-step [stepControl]="dataProtFg" [completed]="false">
           <ng-template matStepLabel>Datenschutzeinstellungen</ng-template>
           <form fxLayout="column" novalidate [formGroup]="dataProtFg" (ngSubmit)="!inProgress && finish()">
             <p style="margin-top: 0">Um dich über aktuelle Geschehnisse auf dem Laufenden halten zu können, möchten wir
